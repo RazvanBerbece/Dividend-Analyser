@@ -1,35 +1,39 @@
 from flask import Flask
-from flask import jsonify
-import yfinance as yf
+import json
+from classes.financeClient import Client
+from flask import request
 
 app = Flask(__name__)
 
-### Session-time variables ###
+### Session-time variables & Building the Stocks Yield Dictionary ###
 stocks = dict()
+client = Client()
 
-def buildStockList():
-    """ Building the API data using yfinance """
-
-    data = yf.download("AAPL SPG MSFT", start="2009-01-01", group_by="ticker")
-
-    companies = ['MSFT', 'AAPL', 'SPG']
-    
-    for company in companies:
-        stocks.update( {company : data[company]} )
+def getDividendValue(symbol):
+    """ Building the API data using IEXCloud """
+    if len(symbol) == 0:
+        print("No symbol given to API call.")
+    else:
+        stocks.update( {symbol : client.requestStockDividend(symbol)} )
 
 ### HTTP Request Methods ###
 @app.route('/')
 def simpleRequest():
     """ Testing if connection can be made to API """
-    return "API listening ..."
+    return "Server listening ..."
 
 @app.route('/stocks', methods=['GET'])
 def getStocks():
     """ Getting session-time stock data """
-    buildStockList()
+
+    symbol = request.args.get('symbol', default = '', type = str)
+
+    getDividendValue(symbol)
+
     for item in stocks.items():
-        print(item)
-    return "Output printed"
+        print(f"{item}")
+
+    return json.dumps(stocks)
 
 if __name__ == '__main__':
     app.run()
