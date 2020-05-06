@@ -1,7 +1,8 @@
 import requests
 
+### Acts as a Client for our API ###
 class Client:
-    """ This downloads Stock Market data from the IEXCloud API """
+    """ This downloads Stock Market data from the IEX Cloud API """
     def __init__(self):
         self.base_link = "https://cloud.iexapis.com/stable"
         self.key = "pk_c97e6a5a4ae0452c8a10f1f161b41434"

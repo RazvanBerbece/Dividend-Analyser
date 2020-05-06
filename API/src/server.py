@@ -19,7 +19,7 @@ def getDividendValue(symbol):
 ### HTTP Request Methods ###
 @app.route('/')
 def simpleRequest():
-    """ Testing if connection can be made to API """
+    """ Testing if connection to API is established """
     return "Server listening ..."
 
 @app.route('/stocks', methods=['GET'])
