@@ -4,13 +4,23 @@ Application which uses an API made in JS (NodeJS), with a Client made in Swift. 
 # Tech Stack :
 
 ## API :
-   * JavaScript ( NodeJS ) ( implemented )
+   * JavaScript ( NodeJS )
+   > API access : https://us-central1-dividend-analyser.cloudfunctions.net/app
+   
+   ### API Requests :
+   + " / " ( Testing API availability );
+   + " /stocks/< STOCK SYMBOL HERE > " ( Returns JSON with the data required by the Client ).
 
-   ### In addition:
+   ### Also Used :
    * Firebase ( implemented )
 
-   ## Client :
+## Client :
    * Swift ( UIKit )
-
+   
+   ### Also Used :
+   * Firebase ( yet to be implemented for the user system )
+   * Alamofire
+   * SwiftyJSON 
+   
 # Contributors :
    1. Antonio Berbece
