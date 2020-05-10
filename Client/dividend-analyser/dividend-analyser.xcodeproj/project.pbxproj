@@ -3,10 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		59700507640D076D6B0410AE /* Pods_dividend_analyserTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80202F11A911963C3D27BADD /* Pods_dividend_analyserTests.framework */; };
+		6F30ED542468948600173F12 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6F30ED532468948600173F12 /* GoogleService-Info.plist */; };
+		6F30ED552468948600173F12 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6F30ED532468948600173F12 /* GoogleService-Info.plist */; };
+		6F30ED562468948600173F12 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6F30ED532468948600173F12 /* GoogleService-Info.plist */; };
 		6F8E6B932468798600FF7695 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8E6B922468798600FF7695 /* AppDelegate.swift */; };
 		6F8E6B952468798600FF7695 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8E6B942468798600FF7695 /* SceneDelegate.swift */; };
 		6F8E6B972468798600FF7695 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8E6B962468798600FF7695 /* ViewController.swift */; };
@@ -15,6 +19,8 @@
 		6F8E6B9F2468798800FF7695 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F8E6B9D2468798800FF7695 /* LaunchScreen.storyboard */; };
 		6F8E6BAA2468798800FF7695 /* dividend_analyserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8E6BA92468798800FF7695 /* dividend_analyserTests.swift */; };
 		6F8E6BB52468798800FF7695 /* dividend_analyserUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8E6BB42468798800FF7695 /* dividend_analyserUITests.swift */; };
+		E410BF0A26136A9FFA057CCA /* Pods_dividend_analyser_dividend_analyserUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6855A7A14CB84244CE39553 /* Pods_dividend_analyser_dividend_analyserUITests.framework */; };
+		F31882C875399774D62C6376 /* Pods_dividend_analyser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4788815D13DB1808C25657AE /* Pods_dividend_analyser.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +41,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4788815D13DB1808C25657AE /* Pods_dividend_analyser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dividend_analyser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FDD6D76422A1D9B879AD8E3 /* Pods-dividend-analyser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dividend-analyser.release.xcconfig"; path = "Target Support Files/Pods-dividend-analyser/Pods-dividend-analyser.release.xcconfig"; sourceTree = "<group>"; };
+		68207D0A17F0E23F2BCC6E7C /* Pods-dividend-analyser-dividend-analyserUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dividend-analyser-dividend-analyserUITests.release.xcconfig"; path = "Target Support Files/Pods-dividend-analyser-dividend-analyserUITests/Pods-dividend-analyser-dividend-analyserUITests.release.xcconfig"; sourceTree = "<group>"; };
+		6F30ED532468948600173F12 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6F8E6B8F2468798600FF7695 /* dividend-analyser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "dividend-analyser.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F8E6B922468798600FF7695 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6F8E6B942468798600FF7695 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +59,12 @@
 		6F8E6BB02468798800FF7695 /* dividend-analyserUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "dividend-analyserUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F8E6BB42468798800FF7695 /* dividend_analyserUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dividend_analyserUITests.swift; sourceTree = "<group>"; };
 		6F8E6BB62468798800FF7695 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7BD9A9590311BDF79AE98845 /* Pods-dividend-analyser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dividend-analyser.debug.xcconfig"; path = "Target Support Files/Pods-dividend-analyser/Pods-dividend-analyser.debug.xcconfig"; sourceTree = "<group>"; };
+		80202F11A911963C3D27BADD /* Pods_dividend_analyserTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dividend_analyserTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		91356CF458278A01F38BD19B /* Pods-dividend-analyserTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dividend-analyserTests.debug.xcconfig"; path = "Target Support Files/Pods-dividend-analyserTests/Pods-dividend-analyserTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A14025D3D7F6FA0E7AB9D39E /* Pods-dividend-analyser-dividend-analyserUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dividend-analyser-dividend-analyserUITests.debug.xcconfig"; path = "Target Support Files/Pods-dividend-analyser-dividend-analyserUITests/Pods-dividend-analyser-dividend-analyserUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		C6855A7A14CB84244CE39553 /* Pods_dividend_analyser_dividend_analyserUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dividend_analyser_dividend_analyserUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9252F49F455A7A5DF45F176 /* Pods-dividend-analyserTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dividend-analyserTests.release.xcconfig"; path = "Target Support Files/Pods-dividend-analyserTests/Pods-dividend-analyserTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F31882C875399774D62C6376 /* Pods_dividend_analyser.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59700507640D076D6B0410AE /* Pods_dividend_analyserTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +88,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E410BF0A26136A9FFA057CCA /* Pods_dividend_analyser_dividend_analyserUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2349C05E29174EFCFB0394D1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7BD9A9590311BDF79AE98845 /* Pods-dividend-analyser.debug.xcconfig */,
+				4FDD6D76422A1D9B879AD8E3 /* Pods-dividend-analyser.release.xcconfig */,
+				A14025D3D7F6FA0E7AB9D39E /* Pods-dividend-analyser-dividend-analyserUITests.debug.xcconfig */,
+				68207D0A17F0E23F2BCC6E7C /* Pods-dividend-analyser-dividend-analyserUITests.release.xcconfig */,
+				91356CF458278A01F38BD19B /* Pods-dividend-analyserTests.debug.xcconfig */,
+				F9252F49F455A7A5DF45F176 /* Pods-dividend-analyserTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		6F8E6B862468798600FF7695 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +115,8 @@
 				6F8E6BA82468798800FF7695 /* dividend-analyserTests */,
 				6F8E6BB32468798800FF7695 /* dividend-analyserUITests */,
 				6F8E6B902468798600FF7695 /* Products */,
+				2349C05E29174EFCFB0394D1 /* Pods */,
+				C0D66F3B70B3E1AEE92F91B9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -108,6 +142,7 @@
 				6F8E6B9B2468798800FF7695 /* Assets.xcassets */,
 				6F8E6B9D2468798800FF7695 /* LaunchScreen.storyboard */,
 				6F8E6BA02468798800FF7695 /* Info.plist */,
+				6F30ED532468948600173F12 /* GoogleService-Info.plist */,
 			);
 			path = "dividend-analyser";
 			sourceTree = "<group>";
@@ -160,6 +195,16 @@
 			path = Transactions;
 			sourceTree = "<group>";
 		};
+		C0D66F3B70B3E1AEE92F91B9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4788815D13DB1808C25657AE /* Pods_dividend_analyser.framework */,
+				C6855A7A14CB84244CE39553 /* Pods_dividend_analyser_dividend_analyserUITests.framework */,
+				80202F11A911963C3D27BADD /* Pods_dividend_analyserTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -167,9 +212,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6F8E6BB92468798800FF7695 /* Build configuration list for PBXNativeTarget "dividend-analyser" */;
 			buildPhases = (
+				7AEFA9A77E78F925F2CAA42F /* [CP] Check Pods Manifest.lock */,
 				6F8E6B8B2468798600FF7695 /* Sources */,
 				6F8E6B8C2468798600FF7695 /* Frameworks */,
 				6F8E6B8D2468798600FF7695 /* Resources */,
+				4950E083DCDE3258FED77A75 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -184,6 +231,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6F8E6BBC2468798800FF7695 /* Build configuration list for PBXNativeTarget "dividend-analyserTests" */;
 			buildPhases = (
+				4610186B77DB650D457F50A4 /* [CP] Check Pods Manifest.lock */,
 				6F8E6BA12468798800FF7695 /* Sources */,
 				6F8E6BA22468798800FF7695 /* Frameworks */,
 				6F8E6BA32468798800FF7695 /* Resources */,
@@ -202,9 +250,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6F8E6BBF2468798800FF7695 /* Build configuration list for PBXNativeTarget "dividend-analyserUITests" */;
 			buildPhases = (
+				D1912CE4849F435359D8AE9E /* [CP] Check Pods Manifest.lock */,
 				6F8E6BAC2468798800FF7695 /* Sources */,
 				6F8E6BAD2468798800FF7695 /* Frameworks */,
 				6F8E6BAE2468798800FF7695 /* Resources */,
+				8FE4B2BAE4D894E002D567C1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -265,6 +315,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F8E6B9F2468798800FF7695 /* LaunchScreen.storyboard in Resources */,
+				6F30ED542468948600173F12 /* GoogleService-Info.plist in Resources */,
 				6F8E6B9C2468798800FF7695 /* Assets.xcassets in Resources */,
 				6F8E6B9A2468798600FF7695 /* Main.storyboard in Resources */,
 			);
@@ -274,6 +325,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F30ED552468948600173F12 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,10 +333,114 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F30ED562468948600173F12 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4610186B77DB650D457F50A4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-dividend-analyserTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4950E083DCDE3258FED77A75 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-dividend-analyser/Pods-dividend-analyser-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-dividend-analyser/Pods-dividend-analyser-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-dividend-analyser/Pods-dividend-analyser-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7AEFA9A77E78F925F2CAA42F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-dividend-analyser-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8FE4B2BAE4D894E002D567C1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-dividend-analyser-dividend-analyserUITests/Pods-dividend-analyser-dividend-analyserUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-dividend-analyser-dividend-analyserUITests/Pods-dividend-analyser-dividend-analyserUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-dividend-analyser-dividend-analyserUITests/Pods-dividend-analyser-dividend-analyserUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D1912CE4849F435359D8AE9E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-dividend-analyser-dividend-analyserUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6F8E6B8B2468798600FF7695 /* Sources */ = {
@@ -464,6 +620,7 @@
 		};
 		6F8E6BBA2468798800FF7695 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7BD9A9590311BDF79AE98845 /* Pods-dividend-analyser.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -482,6 +639,7 @@
 		};
 		6F8E6BBB2468798800FF7695 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4FDD6D76422A1D9B879AD8E3 /* Pods-dividend-analyser.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -500,6 +658,7 @@
 		};
 		6F8E6BBD2468798800FF7695 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 91356CF458278A01F38BD19B /* Pods-dividend-analyserTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -522,6 +681,7 @@
 		};
 		6F8E6BBE2468798800FF7695 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F9252F49F455A7A5DF45F176 /* Pods-dividend-analyserTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -544,6 +704,7 @@
 		};
 		6F8E6BC02468798800FF7695 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A14025D3D7F6FA0E7AB9D39E /* Pods-dividend-analyser-dividend-analyserUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -564,6 +725,7 @@
 		};
 		6F8E6BC12468798800FF7695 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 68207D0A17F0E23F2BCC6E7C /* Pods-dividend-analyser-dividend-analyserUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

@@ -1,0 +1,6 @@
+framework module Pods_dividend_analyser_dividend_analyserUITests {
+  umbrella header "Pods-dividend-analyser-dividend-analyserUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
