@@ -14,15 +14,22 @@ class UserScreenController: UIViewController {
     
     /* IBOutlets and view variables */
     @IBOutlet weak var userGreet: UILabel!
+    @IBOutlet weak var amountLabel: UILabel!
     
     /* User Data Variables */
     var User : User?
     var authResult : AuthDataResult?
+    var handle : AuthStateDidChangeListenerHandle?
     
     /* IBActions and button functions */
     @IBAction func signOut() {
         /* TODO ? */
         print("Trying to sign out ...")
+    }
+    
+    @IBAction func settings() {
+        /* Moving to SettingsScreen */
+        self.performSegue(withIdentifier: "moveToSettings", sender: self)
     }
     
     override func viewDidLoad() {
@@ -31,12 +38,29 @@ class UserScreenController: UIViewController {
         
         // Do any additional setup after loading the view.
         
-        self.userGreet.text = "Hello, \(String(describing: User!.email!))"
+        if let userDisplay = User!.displayName {
+            self.userGreet.text = "Hello, \(String(describing: userDisplay))"
+        }
+        else {
+            self.userGreet.text = "Address: \(String(describing: User!.email!))"
+        }
         
     }
     
-    override func unwind(for unwindSegue: UIStoryboardSegue, towards subsequentVC: UIViewController) {
+    @IBAction func unwind(unwindSegue: UIStoryboardSegue) {
         /* This can be empty, presence required */
+    }
+    
+    /* Segue Performing Methodology */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "moveToUserScreen"){
+            let settingsVC = segue.destination as! SettingsScreenController
+            if let currentUser = Auth.auth().currentUser { // The user is logged in on the current session
+                settingsVC.User = currentUser
+                settingsVC.authData = self.authResult!
+                settingsVC.handle = self.handle!
+            }
+        }
     }
     
     

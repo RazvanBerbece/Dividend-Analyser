@@ -103,7 +103,8 @@ class ViewController: UIViewController {
             let userVC = segue.destination as! UserScreenController
             if let currentUser = Auth.auth().currentUser { // The user is logged in on the current session
                 userVC.User = currentUser
-                userVC.authResult = authResult!
+                userVC.authResult = self.authResult!
+                userVC.handle = self.handle
             }
         }
     }
@@ -131,7 +132,7 @@ class ViewController: UIViewController {
         Auth.auth().removeStateDidChangeListener(handle!)
     }
     
-    @IBAction func myUnwindAction(unwindSegue: UIStoryboardSegue) {
+    @IBAction func unwind(unwindSegue: UIStoryboardSegue) {
         /* This can be empty, presence required */
     }
     
