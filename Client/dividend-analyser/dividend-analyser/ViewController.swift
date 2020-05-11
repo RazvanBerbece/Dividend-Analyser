@@ -11,9 +11,104 @@ import FirebaseAuth
 
 class ViewController: UIViewController {
     
+    /* IBOutlets and view components */
+    @IBOutlet weak var emailInput: UITextField!
+    @IBOutlet weak var passInput: UITextField!
+    @IBOutlet weak var signupResultLabel: UILabel!
+    
     /* Initialising the State Handler */
-    var handle : AuthStateDidChangeListenerHandle? = nil
-
+    var handle : AuthStateDidChangeListenerHandle?
+    
+    /* User State to be sent through segue */
+    var authResult : AuthDataResult?
+    
+    /* Button Action Functions */
+    @IBAction func signUp(sender: UIButton) {
+        
+        /* Getting Text Field values */
+        let email = self.emailInput.text
+        let pass = self.passInput.text
+        
+        /* Validating input */
+        var inputChecked = false
+        if email?.isEmpty == false && pass?.isEmpty == false {
+            inputChecked = true
+        }
+        
+        if inputChecked {
+            /* Using Firebase Auth to sign up a new user */
+            Auth.auth().createUser(withEmail: email!, password: pass!) {
+                (authResult, error) in
+                if error == nil {
+                    print("Successfully created account with email : \(email!)")
+                    
+                    self.signupResultLabel.textColor = UIColor(ciColor: .green)
+                    self.signupResultLabel.text = "Account successfully created !"
+                }
+                else { // An error occured during sign-up
+                    print("error = \(error!)")
+                    
+                    self.signupResultLabel.textColor = UIColor(ciColor: .red)
+                    self.signupResultLabel.text = "Signup failed, please try again."
+                }
+            }
+        }
+        else {
+            print("Input not valid. Review input and try again.")
+            
+            self.signupResultLabel.textColor = UIColor(ciColor: .red)
+            self.signupResultLabel.text = "Input not valid. Review input and try again."
+        }
+        
+    }
+    
+    @IBAction func signIn() {
+        
+        /* Getting Text Field values */
+        let email = self.emailInput.text
+        let pass = self.passInput.text
+        
+        /* Validating input */
+        var inputChecked = false
+        if email?.isEmpty == false && pass?.isEmpty == false {
+            inputChecked = true
+        }
+        
+        if inputChecked {
+            /* Using Firebase Auth to sign in the user */
+            Auth.auth().signIn(withEmail: email!, password: pass!) {
+                [weak self] (authResult, error) in
+                if error == nil {
+                    /* User successfully logged in, sending view to UserScreen */
+                    print("Successfully logged in user : \(String(describing: authResult?.user.email))")
+                    self?.authResult = authResult
+                    
+                    /* Moving to UserScreen */
+                    self?.performSegue(withIdentifier: "moveToUserScreen", sender: self)
+                }
+            }
+        }
+        else {
+            print("Input not valid. Review input and try again.")
+            
+            self.signupResultLabel.textColor = UIColor(ciColor: .red)
+            self.signupResultLabel.text = "Input not valid. Review input and try again."
+        }
+        
+    }
+    
+    /* Segue Performing Methodology */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "moveToUserScreen"){
+            let userVC = segue.destination as! UserScreenController
+            if let currentUser = Auth.auth().currentUser { // The user is logged in on the current session
+                userVC.User = currentUser
+                userVC.authResult = self.authResult!
+                userVC.handle = self.handle
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         
         /* Adding the gradient overlay to the main view */
@@ -32,10 +127,14 @@ class ViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-      super.viewWillDisappear(animated)
-      /* Removing the Firebase handler */
-      Auth.auth().removeStateDidChangeListener(handle!)
+        super.viewWillDisappear(animated)
+        /* Removing the Firebase handler */
+        Auth.auth().removeStateDidChangeListener(handle!)
     }
-
+    
+    @IBAction func unwind(unwindSegue: UIStoryboardSegue) {
+        /* This can be empty, presence required */
+    }
+    
 }
 
