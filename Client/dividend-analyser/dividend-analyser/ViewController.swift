@@ -86,6 +86,13 @@ class ViewController: UIViewController {
                     /* Moving to UserScreen */
                     self?.performSegue(withIdentifier: "moveToUserScreen", sender: self)
                 }
+                else {
+                    /* Login failed */
+                    print("Login failed : \(error)")
+                    
+                    self?.signupResultLabel.text = "Email or password doesn't match any account."
+                    self?.signupResultLabel.textColor = UIColor(ciColor: .red)
+                }
             }
         }
         else {
@@ -105,6 +112,7 @@ class ViewController: UIViewController {
                 userVC.User = currentUser
                 userVC.authResult = self.authResult!
                 userVC.handle = self.handle
+                userVC.FirebaseClient = FirebaseClient(user: Auth.auth().currentUser!)
             }
         }
     }
