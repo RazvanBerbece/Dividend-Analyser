@@ -21,6 +21,9 @@ class UserScreenController: UIViewController {
     var authResult : AuthDataResult?
     var handle : AuthStateDidChangeListenerHandle?
     
+    /* User Data Manager */
+    var FirebaseClient : FirebaseClient?
+    
     /* IBActions and button functions */
     @IBAction func signOut() {
         /* TODO ? */
@@ -40,9 +43,31 @@ class UserScreenController: UIViewController {
         
         if let userDisplay = User!.displayName {
             self.userGreet.text = "Hello, \(String(describing: userDisplay))"
+            
+            let transactions = ["\(String(describing: self.User!.displayName!))", "Login"]
+             self.FirebaseClient?.uploadTransactionToUser(transaction: transactions) {
+                 (result) in
+                 if result == true {
+                     print("Operation successful. (view)")
+                 }
+                 else {
+                     print("Operation failed. (view)")
+                 }
+             }
         }
         else {
             self.userGreet.text = "Address: \(String(describing: User!.email!))"
+            
+            let transactions = ["\(String(describing: self.User!.uid))", "Login"]
+             self.FirebaseClient?.uploadTransactionToUser(transaction: transactions) {
+                 (result) in
+                 if result == true {
+                     print("Operation successful. (view)")
+                 }
+                 else {
+                     print("Operation failed. (view)")
+                 }
+             }
         }
         
     }

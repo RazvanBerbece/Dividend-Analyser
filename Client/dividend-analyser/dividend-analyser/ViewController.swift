@@ -112,6 +112,7 @@ class ViewController: UIViewController {
                 userVC.User = currentUser
                 userVC.authResult = self.authResult!
                 userVC.handle = self.handle
+                userVC.FirebaseClient = FirebaseClient(user: Auth.auth().currentUser!)
             }
         }
     }
