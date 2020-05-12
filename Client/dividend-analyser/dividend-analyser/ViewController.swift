@@ -86,6 +86,13 @@ class ViewController: UIViewController {
                     /* Moving to UserScreen */
                     self?.performSegue(withIdentifier: "moveToUserScreen", sender: self)
                 }
+                else {
+                    /* Login failed */
+                    print("Login failed : \(error)")
+                    
+                    self?.signupResultLabel.text = "Email or password doesn't match any account."
+                    self?.signupResultLabel.textColor = UIColor(ciColor: .red)
+                }
             }
         }
         else {
