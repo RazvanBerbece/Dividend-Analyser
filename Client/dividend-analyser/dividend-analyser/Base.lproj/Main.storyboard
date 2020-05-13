@@ -172,6 +172,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Add Stocks to Portofolio"/>
+                                <connections>
+                                    <segue destination="1c5-RQ-iSL" kind="show" identifier="moveToAddStocks" id="f9e-w1-eBn"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7wH-dr-hSj">
                                 <rect key="frame" x="0.0" y="383" width="414" height="30"/>
@@ -196,7 +199,7 @@
                                     <segue destination="om6-HS-jyG" kind="show" identifier="moveToSettings" id="PZe-oF-wdJ"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="£0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tbB-Di-rFa">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$0.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tbB-Di-rFa">
                                 <rect key="frame" x="90" y="264.5" width="222" height="44"/>
                                 <fontDescription key="fontDescription" name="Didot-Bold" family="Didot" pointSize="35"/>
                                 <nil key="textColor"/>
@@ -235,6 +238,158 @@
                 <exit id="U1i-fG-oEM" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="973.91304347826099" y="111.83035714285714"/>
+        </scene>
+        <!--Add Stocks Controller-->
+        <scene sceneID="S7d-km-tQy">
+            <objects>
+                <viewController id="1c5-RQ-iSL" customClass="AddStocksController" customModule="dividend_analyser" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hEO-vD-bXS">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9NE-Sc-Xz0">
+                                <rect key="frame" x="370" y="77" width="28" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="Jks-Fu-BDv"/>
+                                    <constraint firstAttribute="width" constant="28" id="jtP-qv-Qk8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <state key="normal" backgroundImage="gobackward" catalog="system"/>
+                                <connections>
+                                    <segue destination="BxQ-K7-bOB" kind="unwind" unwindAction="unwindWithUnwindSegue:" id="KIg-CS-G32"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Stocks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rmK-KE-1GR">
+                                <rect key="frame" x="20" y="74" width="342" height="38"/>
+                                <fontDescription key="fontDescription" name="Didot-Bold" family="Didot" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nDw-6d-Cue">
+                                <rect key="frame" x="20" y="248" width="342" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="SYu-AJ-VxY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company Symbol" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LxP-Yu-Wl7">
+                                <rect key="frame" x="20" y="213" width="394" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="37" id="hk9-O3-aAh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(fetched symbol)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wBe-Uu-tyR">
+                                <rect key="frame" x="0.0" y="360" width="414" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="a1R-iM-ybe"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Didot-Bold" family="Didot" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(fetched value)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gy7-Hp-BOv">
+                                <rect key="frame" x="0.0" y="428" width="414" height="55"/>
+                                <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(fetched method)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="duD-CC-jmi">
+                                <rect key="frame" x="0.0" y="502" width="414" height="43"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="43" id="w1s-W0-8wt"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f3A-HM-NoK">
+                                <rect key="frame" x="0.0" y="441" width="25" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="Nbn-GU-oxk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/yr" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kC0-G2-YYe">
+                                <rect key="frame" x="370" y="441" width="27.5" height="29"/>
+                                <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Map-Ei-geV">
+                                <rect key="frame" x="0.0" y="758" width="414" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="BiA-fZ-K0u"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="Add to Portofolio"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aeu-mv-7bl">
+                                <rect key="frame" x="370" y="250" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="hBv-hP-Bor"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="magnifyingglass" catalog="system"/>
+                                <connections>
+                                    <action selector="searchSymbol" destination="1c5-RQ-iSL" eventType="touchUpInside" id="WTo-d9-XGX"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="LxP-Yu-Wl7" firstAttribute="leading" secondItem="rmK-KE-1GR" secondAttribute="leading" id="06W-2n-lgc"/>
+                            <constraint firstItem="f3A-HM-NoK" firstAttribute="centerY" secondItem="Gy7-Hp-BOv" secondAttribute="centerY" id="4sR-r8-QHa"/>
+                            <constraint firstItem="9NE-Sc-Xz0" firstAttribute="top" secondItem="SES-ck-r2P" secondAttribute="top" constant="78.5" id="5CD-pu-v8J"/>
+                            <constraint firstItem="Aeu-mv-7bl" firstAttribute="centerY" secondItem="nDw-6d-Cue" secondAttribute="centerY" id="5Zu-Iw-nL9"/>
+                            <constraint firstItem="duD-CC-jmi" firstAttribute="top" secondItem="Gy7-Hp-BOv" secondAttribute="bottom" constant="19" id="7OZ-51-cSB"/>
+                            <constraint firstItem="f3A-HM-NoK" firstAttribute="baseline" secondItem="kC0-G2-YYe" secondAttribute="baseline" id="DN3-Ns-M68"/>
+                            <constraint firstItem="rmK-KE-1GR" firstAttribute="leading" secondItem="hEO-vD-bXS" secondAttribute="leadingMargin" id="GpO-X2-OX4"/>
+                            <constraint firstItem="wBe-Uu-tyR" firstAttribute="trailing" secondItem="Gy7-Hp-BOv" secondAttribute="trailing" id="Gv7-zU-eEc"/>
+                            <constraint firstItem="Aeu-mv-7bl" firstAttribute="top" secondItem="hEO-vD-bXS" secondAttribute="top" constant="249" id="Hng-sk-6ge"/>
+                            <constraint firstItem="Gy7-Hp-BOv" firstAttribute="top" secondItem="wBe-Uu-tyR" secondAttribute="bottom" constant="24" id="K7e-TO-79O"/>
+                            <constraint firstItem="wBe-Uu-tyR" firstAttribute="trailing" secondItem="LxP-Yu-Wl7" secondAttribute="trailing" id="KtS-jR-Ypc"/>
+                            <constraint firstItem="wBe-Uu-tyR" firstAttribute="top" secondItem="Aeu-mv-7bl" secondAttribute="bottom" constant="78" id="MMQ-Ot-nxr"/>
+                            <constraint firstItem="Map-Ei-geV" firstAttribute="trailing" secondItem="duD-CC-jmi" secondAttribute="trailing" id="NcJ-b4-jmf"/>
+                            <constraint firstItem="wBe-Uu-tyR" firstAttribute="top" secondItem="nDw-6d-Cue" secondAttribute="bottom" constant="76" id="Nxk-5z-pDY"/>
+                            <constraint firstItem="SES-ck-r2P" firstAttribute="trailing" secondItem="9NE-Sc-Xz0" secondAttribute="trailing" constant="16" id="O55-Ot-VWT"/>
+                            <constraint firstItem="f3A-HM-NoK" firstAttribute="leading" secondItem="duD-CC-jmi" secondAttribute="leading" id="Rlp-6N-djI"/>
+                            <constraint firstItem="rmK-KE-1GR" firstAttribute="top" secondItem="SES-ck-r2P" secondAttribute="top" constant="74" id="TLd-DK-J1g"/>
+                            <constraint firstItem="LxP-Yu-Wl7" firstAttribute="leading" secondItem="nDw-6d-Cue" secondAttribute="leading" id="YLb-v9-Qrc"/>
+                            <constraint firstItem="wBe-Uu-tyR" firstAttribute="leading" secondItem="f3A-HM-NoK" secondAttribute="leading" id="ZcG-8p-CNH"/>
+                            <constraint firstItem="Aeu-mv-7bl" firstAttribute="leading" secondItem="9NE-Sc-Xz0" secondAttribute="leading" id="ZmA-qE-YRd"/>
+                            <constraint firstItem="LxP-Yu-Wl7" firstAttribute="trailing" secondItem="SES-ck-r2P" secondAttribute="trailing" id="aeI-uu-jAT"/>
+                            <constraint firstItem="nDw-6d-Cue" firstAttribute="trailing" secondItem="rmK-KE-1GR" secondAttribute="trailing" id="f3x-wD-tbL"/>
+                            <constraint firstItem="Gy7-Hp-BOv" firstAttribute="trailing" secondItem="duD-CC-jmi" secondAttribute="trailing" id="ggW-NC-vBU"/>
+                            <constraint firstItem="9NE-Sc-Xz0" firstAttribute="leading" secondItem="rmK-KE-1GR" secondAttribute="trailing" constant="8" id="gs0-V6-mmg"/>
+                            <constraint firstItem="Gy7-Hp-BOv" firstAttribute="leading" secondItem="f3A-HM-NoK" secondAttribute="leading" id="il1-Iu-Hp4"/>
+                            <constraint firstItem="SES-ck-r2P" firstAttribute="bottom" secondItem="Map-Ei-geV" secondAttribute="bottom" constant="20" id="jBM-ME-nld"/>
+                            <constraint firstItem="duD-CC-jmi" firstAttribute="top" secondItem="f3A-HM-NoK" secondAttribute="bottom" constant="32" id="oj2-cx-qIY"/>
+                            <constraint firstItem="wBe-Uu-tyR" firstAttribute="centerX" secondItem="hEO-vD-bXS" secondAttribute="centerX" id="sMC-6U-jPc"/>
+                            <constraint firstItem="kC0-G2-YYe" firstAttribute="leading" secondItem="9NE-Sc-Xz0" secondAttribute="leading" id="tSZ-hT-ehP"/>
+                            <constraint firstItem="LxP-Yu-Wl7" firstAttribute="top" secondItem="hEO-vD-bXS" secondAttribute="top" constant="213" id="uRS-xn-bQ6"/>
+                            <constraint firstItem="nDw-6d-Cue" firstAttribute="top" secondItem="hEO-vD-bXS" secondAttribute="top" constant="248" id="uXY-m3-Gy1"/>
+                            <constraint firstItem="Map-Ei-geV" firstAttribute="leading" secondItem="duD-CC-jmi" secondAttribute="leading" id="uXi-7d-tj7"/>
+                            <constraint firstItem="SES-ck-r2P" firstAttribute="trailing" secondItem="Aeu-mv-7bl" secondAttribute="trailing" constant="14" id="yAk-Ua-XTp"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="SES-ck-r2P"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="koc-Vc-EQZ"/>
+                    <connections>
+                        <outlet property="methodLabel" destination="duD-CC-jmi" id="fLJ-D9-gzY"/>
+                        <outlet property="symbolInputLabel" destination="nDw-6d-Cue" id="I7q-5J-LdI"/>
+                        <outlet property="symbolLabel" destination="wBe-Uu-tyR" id="iYy-eg-NBO"/>
+                        <outlet property="valueLabel" destination="Gy7-Hp-BOv" id="WZZ-nC-Vpm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sdQ-SD-WGm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="BxQ-K7-bOB" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1831.8840579710147" y="111.83035714285714"/>
         </scene>
         <!--Settings Screen Controller-->
         <scene sceneID="rGK-ZL-dwa">
@@ -370,6 +525,7 @@
     </scenes>
     <resources>
         <image name="gobackward" catalog="system" width="121" height="128"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="slider.horizontal.3" catalog="system" width="128" height="100"/>
     </resources>
 </document>
