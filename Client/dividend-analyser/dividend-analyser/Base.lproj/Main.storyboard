@@ -129,6 +129,58 @@
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="111.83035714285714"/>
         </scene>
+        <!--User Portofolio Controller-->
+        <scene sceneID="Not-C4-DA3">
+            <objects>
+                <viewController id="M9y-mF-jeo" customClass="UserPortofolioController" customModule="dividend_analyser" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iZc-Km-IVh">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Portofolio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5q-vc-m3C">
+                                <rect key="frame" x="20" y="61" width="342" height="38"/>
+                                <fontDescription key="fontDescription" name="Didot-Bold" family="Didot" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HY5-eZ-xLi">
+                                <rect key="frame" x="366" y="65.5" width="28" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="28" id="vae-Ih-vri"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <state key="normal" backgroundImage="gobackward" catalog="system"/>
+                                <connections>
+                                    <segue destination="GuC-7o-tlV" kind="unwind" unwindAction="unwindWithUnwindSegue:" id="psy-8A-lPA"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Q1v-oI-Eiv">
+                                <rect key="frame" x="20" y="147" width="374" height="637"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="HY5-eZ-xLi" firstAttribute="top" secondItem="j0c-d5-MkX" secondAttribute="top" constant="67" id="3bO-2M-wx8"/>
+                            <constraint firstItem="HY5-eZ-xLi" firstAttribute="leading" secondItem="A5q-vc-m3C" secondAttribute="trailing" constant="4" id="8IE-20-Yyf"/>
+                            <constraint firstItem="HY5-eZ-xLi" firstAttribute="trailing" secondItem="iZc-Km-IVh" secondAttribute="trailingMargin" id="ARz-wW-7Bj"/>
+                            <constraint firstItem="Q1v-oI-Eiv" firstAttribute="top" secondItem="A5q-vc-m3C" secondAttribute="bottom" constant="48" id="KzH-pf-ube"/>
+                            <constraint firstItem="Q1v-oI-Eiv" firstAttribute="leading" secondItem="A5q-vc-m3C" secondAttribute="leading" id="Vf8-1n-0WK"/>
+                            <constraint firstItem="A5q-vc-m3C" firstAttribute="centerY" secondItem="HY5-eZ-xLi" secondAttribute="centerY" id="bsu-Uy-s9l"/>
+                            <constraint firstItem="A5q-vc-m3C" firstAttribute="leading" secondItem="iZc-Km-IVh" secondAttribute="leadingMargin" id="d1l-qZ-c3m"/>
+                            <constraint firstItem="Q1v-oI-Eiv" firstAttribute="trailing" secondItem="HY5-eZ-xLi" secondAttribute="trailing" id="hX1-BN-g3v"/>
+                            <constraint firstItem="j0c-d5-MkX" firstAttribute="bottom" secondItem="Q1v-oI-Eiv" secondAttribute="bottom" constant="24" id="jfH-pj-AG5"/>
+                            <constraint firstItem="A5q-vc-m3C" firstAttribute="top" secondItem="j0c-d5-MkX" secondAttribute="top" constant="61" id="nbZ-H5-c2R"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="j0c-d5-MkX"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Iya-XP-kmy"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="phx-5M-ihv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="GuC-7o-tlV" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1927.5362318840582" y="525.66964285714289"/>
+        </scene>
         <!--User Screen Controller-->
         <scene sceneID="1MS-Gx-oqB">
             <objects>
@@ -183,6 +235,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="View Portofolio"/>
+                                <connections>
+                                    <segue destination="M9y-mF-jeo" kind="show" identifier="moveToPortofolio" id="4Op-eb-vUb"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bqt-Ab-hoc">
                                 <rect key="frame" x="360" y="762.5" width="34" height="25"/>
@@ -389,7 +444,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sdQ-SD-WGm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="BxQ-K7-bOB" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1831.8840579710147" y="111.83035714285714"/>
+            <point key="canvasLocation" x="1928" y="-163"/>
         </scene>
         <!--Settings Screen Controller-->
         <scene sceneID="rGK-ZL-dwa">
