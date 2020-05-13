@@ -18,9 +18,10 @@ Application which uses an API made in JS (NodeJS), with a Client made in Swift. 
    * Swift ( UIKit )
    
    ### Also Used :
-   * Firebase ( yet to be implemented for the user system )
+   * Firebase ( implemented )
    * Alamofire
    * SwiftyJSON 
    
 # Contributors :
    1. Antonio Berbece
+   2. Sergiu-Stefan Tomescu
