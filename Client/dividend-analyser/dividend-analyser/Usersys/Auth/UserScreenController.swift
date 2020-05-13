@@ -70,6 +70,19 @@ class UserScreenController: UIViewController {
              }
         }
         
+        /* ------------- DOWNLOAD DATA FROM FIREBASE DATABASE CALL -----------
+        print(self.FirebaseClient!.downloadUserTransactions(completion: {
+            (result) in
+            if result.count > 0 {
+                print("\(result[0]) (view)")
+                self.amountLabel.text = result[0]
+            }
+            else {
+                print("Nothing received from the download.")
+            }
+        }))
+         */
+        
     }
     
     @IBAction func unwind(unwindSegue: UIStoryboardSegue) {
