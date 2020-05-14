@@ -45,43 +45,44 @@ class UserScreenController: UIViewController {
             self.userGreet.text = "Hello, \(String(describing: userDisplay))"
             
             let transactions = ["\(String(describing: self.User!.displayName!))", "Login"]
-             self.FirebaseClient?.uploadTransactionToUser(transaction: transactions) {
-                 (result) in
-                 if result == true {
-                     print("Operation successful. (view)")
-                 }
-                 else {
-                     print("Operation failed. (view)")
-                 }
-             }
+            self.FirebaseClient?.uploadTransactionToUser(transaction: transactions) {
+                (result) in
+                if result == true {
+                    print("Operation successful. (view)")
+                }
+                else {
+                    print("Operation failed. (view)")
+                }
+            }
         }
         else {
             self.userGreet.text = "Address: \(String(describing: User!.email!))"
             
             let transactions = ["\(String(describing: self.User!.uid))", "Login"]
-             self.FirebaseClient?.uploadTransactionToUser(transaction: transactions) {
-                 (result) in
-                 if result == true {
-                     print("Operation successful. (view)")
-                 }
-                 else {
-                     print("Operation failed. (view)")
-                 }
-             }
+            self.FirebaseClient?.uploadTransactionToUser(transaction: transactions) {
+                (result) in
+                if result == true {
+                    print("Operation successful. (view)")
+                }
+                else {
+                    print("Operation failed. (view)")
+                }
+            }
         }
         
-        /* ------------- DOWNLOAD DATA FROM FIREBASE DATABASE CALL -----------
+        /* Download data from User's Firebase Database */
+        var transactions : [String] = []
         print(self.FirebaseClient!.downloadUserTransactions(completion: {
             (result) in
             if result.count > 0 {
-                print("\(result[0]) (view)")
-                self.amountLabel.text = result[0]
+                transactions = result
+                print(transactions)
             }
             else {
                 print("Nothing received from the download.")
             }
         }))
-         */
+        
         
     }
     
@@ -91,6 +92,7 @@ class UserScreenController: UIViewController {
     
     /* Segue Performing Methodology */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        /* Should add segue-specific for Portofolio transactions */
         if(segue.identifier == "moveToUserScreen"){
             let settingsVC = segue.destination as! SettingsScreenController
             if let currentUser = Auth.auth().currentUser { // The user is logged in on the current session
