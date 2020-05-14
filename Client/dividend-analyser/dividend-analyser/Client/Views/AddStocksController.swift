@@ -47,12 +47,15 @@ class AddStocksController: UIViewController {
         /*
          *  Adds to the current portofolio (session-time) and then sends it to Firebase Database
          */
-        self.APIstock = ["AAPL", "0.77"] // test stock transaction
         
         if self.portofolio[0][0] == "Add Stocks to see them here !" { // if new user, delete the default keyword from the portofolio
-            self.portofolio = []
+            self.portofolio = [[]]
         }
-        self.portofolio.append(self.APIstock)
+        
+        /*
+         self.APIstock = ["AAPL", "0.77"] // test stock transaction
+         self.portofolio.append(self.APIstock)
+         */
         
         self.firebaseClient = FirebaseClient(user: self.User!)
         
