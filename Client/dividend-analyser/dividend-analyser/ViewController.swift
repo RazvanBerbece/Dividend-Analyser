@@ -16,6 +16,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var passInput: UITextField!
     @IBOutlet weak var signupResultLabel: UILabel!
     
+    /* Managers */
+    var firebaseClient : FirebaseClient?
+    
     /* Initialising the State Handler */
     var handle : AuthStateDidChangeListenerHandle?
     
@@ -44,6 +47,23 @@ class ViewController: UIViewController {
                     
                     self.signupResultLabel.textColor = UIColor(ciColor: .green)
                     self.signupResultLabel.text = "Account successfully created !"
+                    
+                    /* Creating a default Firebase Database entry */
+                    Auth.auth().signIn(withEmail: email!, password: pass!) {
+                        (authResult, error) in
+                        if error == nil {
+                            self.firebaseClient = FirebaseClient(user: authResult!.user)
+                            self.firebaseClient?.uploadTransactionToUser(transaction: [["Add Stocks to see them here !"]]) {
+                                (result) in
+                                if result == true {
+                                    print("Default portofolio initialised for the signed-up user.")
+                                }
+                                else {
+                                    print("Default portofolio not initialised.")
+                                }
+                            }
+                        }
+                    }
                 }
                 else { // An error occured during sign-up
                     print("error = \(error!)")
@@ -120,10 +140,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         
         /* Adding the gradient overlay to the main view */
-        let gradient = CAGradientLayer()
-        gradient.frame = view.bounds
-        gradient.colors = [UIColor.white.cgColor, UIColor.gray.cgColor]
-        self.view.layer.insertSublayer(gradient, at: 0)
+        //        let gradient = CAGradientLayer()
+        //        gradient.frame = view.bounds
+        //        gradient.colors = [UIColor.white.cgColor, UIColor.gray.cgColor]
+        //        self.view.layer.insertSublayer(gradient, at: 0)
         
         /* Handler for Firebase functionality */
         self.handle = Auth.auth().addStateDidChangeListener { (auth, user) in

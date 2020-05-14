@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class AddStocksController: UIViewController {
     
@@ -18,6 +19,13 @@ class AddStocksController: UIViewController {
     
     /* User Variables */
     var portofolio : [[String]] = [] // this will be updated and sent
+    var User : User?
+    
+    /* Current stock from API */
+    var APIstock : [String] = []
+    
+    /* Managers */
+    var firebaseClient : FirebaseClient?
     
     /* IBActions and button functions */
     @IBAction func searchSymbol() {
@@ -29,6 +37,7 @@ class AddStocksController: UIViewController {
         }
         else {
             /* Client Search - Tomi call here */
+            /* Update APIstock if successful */
         }
         
     }
@@ -38,6 +47,24 @@ class AddStocksController: UIViewController {
         /*
          *  Adds to the current portofolio (session-time) and then sends it to Firebase Database
          */
+        self.APIstock = ["AAPL", "0.77"] // test stock transaction
+        
+        if self.portofolio[0][0] == "Add Stocks to see them here !" { // if new user, delete the default keyword from the portofolio
+            self.portofolio = []
+        }
+        self.portofolio.append(self.APIstock)
+        
+        self.firebaseClient = FirebaseClient(user: self.User!)
+        
+        self.firebaseClient?.uploadTransactionToUser(transaction: self.portofolio) {
+            (result) in
+            if result == true {
+                print("Uploaded stock to portofolio !")
+            }
+            else {
+                print("Failed to upload stock to portofolio.")
+            }
+        }
     }
     
     override func viewDidLoad() {
