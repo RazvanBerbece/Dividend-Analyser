@@ -20,7 +20,7 @@ class UserScreenController: UIViewController {
     var User : User?
     var authResult : AuthDataResult?
     var handle : AuthStateDidChangeListenerHandle?
-    var transactions : [[String]] = [[]]
+    var transactions : [[String]] = []
     
     /* User Data Manager */
     var FirebaseClient : FirebaseClient?
@@ -77,33 +77,11 @@ class UserScreenController: UIViewController {
     /* Loads all the user required data from Firebase */
     func loadData() {
         
-        if let userDisplay = User!.displayName { // User set up a username
+        if let userDisplay = User!.displayName { // User set up a username already
             self.userGreet.text = "Hello, \(String(describing: userDisplay))"
-            
-            let transactions = [["test", "test"], ["test1", "test1"]]
-            self.FirebaseClient?.uploadTransactionToUser(transaction: transactions) {
-                (result) in
-                if result == true {
-                    print("Operation successful. (view)")
-                }
-                else {
-                    print("Operation failed. (view)")
-                }
-            }
         }
         else { // else use their email for the user screen
-            self.userGreet.text = "Address: \(String(describing: User!.email!))"
-            
-            let transactions = [["test", "test"], ["test1", "test1"]]
-            self.FirebaseClient?.uploadTransactionToUser(transaction: transactions) {
-                (result) in
-                if result == true {
-                    print("Operation successful. (view)")
-                }
-                else {
-                    print("Operation failed. (view)")
-                }
-            }
+            self.userGreet.text = "\(String(describing: User!.email!))"
         }
         
         /* Download user portofolio data from Firebase Database */
@@ -114,6 +92,7 @@ class UserScreenController: UIViewController {
             }
             else {
                 print("Nothing received from the download.")
+                self.transactions = []
             }
         }))
         
