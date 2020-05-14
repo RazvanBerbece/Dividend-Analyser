@@ -19,13 +19,31 @@ public class Portofolio : NSObject {
     
     init(stockData: [String]) {
         // One element in the [[String]] represents a single stock's information table
-        self.stockName = stockData[0]
-        self.stockDividend = stockData[1]
+        let stockDataLength = stockData.count
         
-        /* TO BE ADDED WHEN DOWNLOADED DATA IS SANITISED AND READY FOR DISPLAY
-         self.stockCurrency = stockData[2]
-         self.stockPayRate = stockData[3]
-         */
+        switch stockDataLength {
+        case 1:
+            self.stockName = stockData[0]
+            self.stockDividend = ""
+        case 2:
+            self.stockName = stockData[0]
+            self.stockDividend = stockData[1]
+            /*
+             case 3:
+             self.stockName = stockData[0]
+             self.stockDividend = stockData[1]
+             self.stockCurrency = stockData[2]
+             case 4:
+             self.stockName = stockData[0]
+             self.stockDividend = stockData[1]
+             self.stockCurrency = stockData[2]
+             self.stockPayRate = stockData[3]
+             */
+        default:
+            self.stockName = ""
+            self.stockDividend = ""
+            print("No data for portofolio init !")
+        }
         
     }
     

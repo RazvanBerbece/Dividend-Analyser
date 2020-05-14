@@ -24,9 +24,14 @@ class UserPortofolioController: UIViewController, UITableViewDelegate, UITableVi
         
         super.viewDidLoad()
         
-        /* Loop through received stocks and add them to the model */
-        for stock in portofolioDataFromFirebase! {
-            model.append(Portofolio(stockData: stock))
+        /* Loop through received stocks and add them to the model if there is any stock found */
+        if portofolioDataFromFirebase!.count == 0 {
+            print("No symbols found in user's portofolio.")
+        }
+        else {
+            for stock in portofolioDataFromFirebase! {
+                model.append(Portofolio(stockData: stock))
+            }
         }
         
     }
