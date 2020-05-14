@@ -16,24 +16,45 @@ class AddStocksController: UIViewController {
     @IBOutlet weak var valueLabel: UILabel!
     @IBOutlet weak var symbolLabel: UILabel!
     
+    /* User Variables */
+    var portofolio : [[String]] = [] // this will be updated and sent
+    
     /* IBActions and button functions */
     @IBAction func searchSymbol() {
         
-        let symbolInput = self.symbolInputLabel.text
+        let symbolInput = self.symbolInputLabel.text // this will be passed to the API
         
         if symbolInput?.count == 0 {
             print("No input. Try searching for a stock symbol.")
         }
         else {
-            /* Client - Tomi call here */
+            /* Client Search - Tomi call here */
         }
         
+    }
+    
+    @IBAction func addSymbol() {
+        // TODO
+        /*
+         *  Adds to the current portofolio (session-time) and then sends it to Firebase Database
+         */
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        
+        //Looks for single or multiple taps.
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        
+        view.addGestureRecognizer(tap)
+    }
+    
+    //Calls this function when the tap is recognized.
+    @objc func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
     
     @IBAction func unwind(unwindSegue: UIStoryboardSegue) {
