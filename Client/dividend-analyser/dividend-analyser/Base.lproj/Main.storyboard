@@ -20,13 +20,13 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="v04-sh-kPH"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="35"/>
+                                <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="40"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Analyser" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q33-UF-E8j">
-                                <rect key="frame" x="0.0" y="180" width="414" height="45"/>
-                                <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="36"/>
+                                <rect key="frame" x="0.0" y="180" width="414" height="43.5"/>
+                                <fontDescription key="fontDescription" name="Didot" family="Didot" pointSize="35"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -75,7 +75,7 @@
                                     <action selector="signIn" destination="BYZ-38-t0r" eventType="touchUpInside" id="hLo-ZL-MZB"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Register with us !" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tIe-gO-ZJP">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Complete the form with your credentials" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tIe-gO-ZJP">
                                 <rect key="frame" x="0.0" y="305" width="414" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="LNz-uI-6cD"/>

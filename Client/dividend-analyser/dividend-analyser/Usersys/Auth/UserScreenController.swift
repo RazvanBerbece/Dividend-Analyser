@@ -46,7 +46,9 @@ class UserScreenController: UIViewController {
     }
     
     @IBAction func unwind(unwindSegue: UIStoryboardSegue) {
-        /* This can be empty, presence required */
+        if let stocksSourceController = unwindSegue.source as? AddStocksController {
+            transactions = stocksSourceController.portofolio
+        }
     }
     
     /* Segue Performing Methodology */
@@ -62,14 +64,15 @@ class UserScreenController: UIViewController {
         }
         else if segue.identifier == "moveToPortofolio" {
             let portofolioVC = segue.destination as! UserPortofolioController
-            if let currentUser = Auth.auth().currentUser {
+            if Auth.auth().currentUser != nil {
                 portofolioVC.portofolioDataFromFirebase = self.transactions
             }
         }
         else if segue.identifier == "moveToAddStocks" {
             let addStocksVC = segue.destination as! AddStocksController
-            if let currentUser = Auth.auth().currentUser {
+            if Auth.auth().currentUser != nil {
                 addStocksVC.portofolio = self.transactions
+                addStocksVC.User = self.User!
             }
         }
     }
@@ -92,7 +95,6 @@ class UserScreenController: UIViewController {
             }
             else {
                 print("Nothing received from the download.")
-                self.transactions = []
             }
         }))
         
