@@ -43,12 +43,11 @@ class AddStocksController: UIViewController {
     }
     
     @IBAction func addSymbol() {
-        // TODO
         /*
          *  Adds to the current portofolio (session-time) and then sends it to Firebase Database
          */
         
-        if self.portofolio[0][0] == "Add Stocks to see them here !" { // if new user, delete the default keyword from the portofolio
+        if self.portofolio[0][0] == "Add Stocks to see them here !" { // if new user, delete the default value from the portofolio
             self.portofolio = [[]]
         }
         
