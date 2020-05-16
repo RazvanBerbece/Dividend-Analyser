@@ -19,7 +19,7 @@ public class FirebaseClient {
     }
     
     /* Uploads a certain transaction to the Firebase Databse of the current user */
-    public func uploadTransactionToUser(transaction: [String], completion: @escaping (Bool) -> (Void)) {
+    public func uploadTransactionToUser(transaction: [[String]], completion: @escaping (Bool) -> (Void)) {
         
         let dbRef = Database.database().reference() // holds the reference to the Realtime Database
         
@@ -36,7 +36,7 @@ public class FirebaseClient {
     }
     
     /* Downloads the list of transactions (ie: the portofolio) of a user */
-    public func downloadUserTransactions(completion: @escaping ([String]) -> (Void)) {
+    public func downloadUserTransactions(completion: @escaping ([[String]]) -> (Void)) {
         
         let dbRef = Database.database().reference()
         
@@ -47,19 +47,19 @@ public class FirebaseClient {
         specificUserRef.observeSingleEvent(of: .value, with: { // Transactions download once when user first logins
             (snapshot) in
             
-            if let transactions = snapshot.value as? [String] {
+            if let transactions = snapshot.value as? [[String]] {
                 print("Got data from download : \(transactions)")
                 
                 completion(transactions)
             }
             else {
-                completion([])
+                completion([[]])
             }
         }) { (error) in
             if error == nil { // Something occured while downloading the data
                 print("error = \(error)")
                 
-                completion([])
+                completion([[]])
             }
         }
         

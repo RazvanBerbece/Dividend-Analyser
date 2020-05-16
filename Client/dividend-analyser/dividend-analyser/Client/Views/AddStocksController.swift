@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class AddStocksController: UIViewController {
     
@@ -16,24 +17,74 @@ class AddStocksController: UIViewController {
     @IBOutlet weak var valueLabel: UILabel!
     @IBOutlet weak var symbolLabel: UILabel!
     
+    /* User Variables */
+    var portofolio : [[String]] = [] // this will be updated and sent
+    var User : User?
+    
+    /* Current stock from API */
+    var APIstock : [String] = []
+    
+    /* Managers */
+    var firebaseClient : FirebaseClient?
+    
     /* IBActions and button functions */
     @IBAction func searchSymbol() {
         
-        let symbolInput = self.symbolInputLabel.text
+        let symbolInput = self.symbolInputLabel.text // this will be passed to the API
         
         if symbolInput?.count == 0 {
             print("No input. Try searching for a stock symbol.")
         }
         else {
-            /* Client - Tomi call here */
+            /* Client Search - Tomi call here */
+            /* Update APIstock if successful */
         }
         
+    }
+    
+    @IBAction func addSymbol() {
+        // TODO
+        /*
+         *  Adds to the current portofolio (session-time) and then sends it to Firebase Database
+         */
+        
+        if self.portofolio[0][0] == "Add Stocks to see them here !" { // if new user, delete the default keyword from the portofolio
+            self.portofolio = [[]]
+        }
+        
+        /*
+         self.APIstock = ["AAPL", "0.77"] // test stock transaction
+         self.portofolio.append(self.APIstock)
+         */
+        
+        self.firebaseClient = FirebaseClient(user: self.User!)
+        
+        self.firebaseClient?.uploadTransactionToUser(transaction: self.portofolio) {
+            (result) in
+            if result == true {
+                print("Uploaded stock to portofolio !")
+            }
+            else {
+                print("Failed to upload stock to portofolio.")
+            }
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        
+        //Looks for single or multiple taps.
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        
+        view.addGestureRecognizer(tap)
+    }
+    
+    //Calls this function when the tap is recognized.
+    @objc func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
     
     @IBAction func unwind(unwindSegue: UIStoryboardSegue) {
