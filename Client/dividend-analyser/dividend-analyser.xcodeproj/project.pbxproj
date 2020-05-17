@@ -31,6 +31,12 @@
 		6FB48F6F24699C2E002B09EB /* SettingsScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB48F6E24699C2E002B09EB /* SettingsScreenController.swift */; };
 		6FB48F7024699C2E002B09EB /* SettingsScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB48F6E24699C2E002B09EB /* SettingsScreenController.swift */; };
 		6FB48F7124699C2E002B09EB /* SettingsScreenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB48F6E24699C2E002B09EB /* SettingsScreenController.swift */; };
+		6FECC4B224718385009FF347 /* companylist.csv in Resources */ = {isa = PBXBuildFile; fileRef = 6FECC4B124718385009FF347 /* companylist.csv */; };
+		6FECC4B324718385009FF347 /* companylist.csv in Resources */ = {isa = PBXBuildFile; fileRef = 6FECC4B124718385009FF347 /* companylist.csv */; };
+		6FECC4B424718385009FF347 /* companylist.csv in Resources */ = {isa = PBXBuildFile; fileRef = 6FECC4B124718385009FF347 /* companylist.csv */; };
+		6FECC4B6247183A2009FF347 /* symbolPredictor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FECC4B5247183A2009FF347 /* symbolPredictor.swift */; };
+		6FECC4B7247183A2009FF347 /* symbolPredictor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FECC4B5247183A2009FF347 /* symbolPredictor.swift */; };
+		6FECC4B8247183A2009FF347 /* symbolPredictor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FECC4B5247183A2009FF347 /* symbolPredictor.swift */; };
 		6FFD1235246C87AA00CB16C0 /* AddStocksController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFD1234246C87AA00CB16C0 /* AddStocksController.swift */; };
 		6FFD1236246C87AA00CB16C0 /* AddStocksController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFD1234246C87AA00CB16C0 /* AddStocksController.swift */; };
 		6FFD1237246C87AA00CB16C0 /* AddStocksController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFD1234246C87AA00CB16C0 /* AddStocksController.swift */; };
@@ -81,6 +87,8 @@
 		6F8E6BB42468798800FF7695 /* dividend_analyserUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dividend_analyserUITests.swift; sourceTree = "<group>"; };
 		6F8E6BB62468798800FF7695 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6FB48F6E24699C2E002B09EB /* SettingsScreenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenController.swift; sourceTree = "<group>"; };
+		6FECC4B124718385009FF347 /* companylist.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = companylist.csv; path = ../../../../../../../../../../Downloads/companylist.csv; sourceTree = "<group>"; };
+		6FECC4B5247183A2009FF347 /* symbolPredictor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = symbolPredictor.swift; sourceTree = "<group>"; };
 		6FFD1234246C87AA00CB16C0 /* AddStocksController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStocksController.swift; sourceTree = "<group>"; };
 		6FFD1239246C9D7B00CB16C0 /* UserPortofolioController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPortofolioController.swift; sourceTree = "<group>"; };
 		7BD9A9590311BDF79AE98845 /* Pods-dividend-analyser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dividend-analyser.debug.xcconfig"; path = "Target Support Files/Pods-dividend-analyser/Pods-dividend-analyser.debug.xcconfig"; sourceTree = "<group>"; };
@@ -202,6 +210,7 @@
 		6F8E6BC324687A3200FF7695 /* Client */ = {
 			isa = PBXGroup;
 			children = (
+				6FECC4B024718377009FF347 /* Other */,
 				6FFD1233246C871D00CB16C0 /* Views */,
 			);
 			path = Client;
@@ -223,6 +232,15 @@
 				6F12C3A1246DA57B00806D6E /* Portofolio.swift */,
 			);
 			path = Transactions;
+			sourceTree = "<group>";
+		};
+		6FECC4B024718377009FF347 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				6FECC4B124718385009FF347 /* companylist.csv */,
+				6FECC4B5247183A2009FF347 /* symbolPredictor.swift */,
+			);
+			path = Other;
 			sourceTree = "<group>";
 		};
 		6FFD1233246C871D00CB16C0 /* Views */ = {
@@ -361,6 +379,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F8E6B9F2468798800FF7695 /* LaunchScreen.storyboard in Resources */,
+				6FECC4B224718385009FF347 /* companylist.csv in Resources */,
 				6F30ED542468948600173F12 /* GoogleService-Info.plist in Resources */,
 				6F8E6B9C2468798800FF7695 /* Assets.xcassets in Resources */,
 				6F8E6B9A2468798600FF7695 /* Main.storyboard in Resources */,
@@ -371,6 +390,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FECC4B324718385009FF347 /* companylist.csv in Resources */,
 				6F30ED552468948600173F12 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -379,6 +399,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FECC4B424718385009FF347 /* companylist.csv in Resources */,
 				6F30ED562468948600173F12 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -501,6 +522,7 @@
 				6F8E6B972468798600FF7695 /* ViewController.swift in Sources */,
 				6F8E6B932468798600FF7695 /* AppDelegate.swift in Sources */,
 				6F8E6B952468798600FF7695 /* SceneDelegate.swift in Sources */,
+				6FECC4B6247183A2009FF347 /* symbolPredictor.swift in Sources */,
 				6FB48F6F24699C2E002B09EB /* SettingsScreenController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -511,6 +533,7 @@
 			files = (
 				6FFD1236246C87AA00CB16C0 /* AddStocksController.swift in Sources */,
 				6F341C422468D1A1002151A9 /* UserScreenController.swift in Sources */,
+				6FECC4B7247183A2009FF347 /* symbolPredictor.swift in Sources */,
 				6F8E6BAA2468798800FF7695 /* dividend_analyserTests.swift in Sources */,
 				6F12C3A3246DA57B00806D6E /* Portofolio.swift in Sources */,
 				6FFD123B246C9D7B00CB16C0 /* UserPortofolioController.swift in Sources */,
@@ -525,6 +548,7 @@
 			files = (
 				6FFD1237246C87AA00CB16C0 /* AddStocksController.swift in Sources */,
 				6F341C432468D1A1002151A9 /* UserScreenController.swift in Sources */,
+				6FECC4B8247183A2009FF347 /* symbolPredictor.swift in Sources */,
 				6F8E6BB52468798800FF7695 /* dividend_analyserUITests.swift in Sources */,
 				6F12C3A4246DA57B00806D6E /* Portofolio.swift in Sources */,
 				6FFD123C246C9D7B00CB16C0 /* UserPortofolioController.swift in Sources */,
