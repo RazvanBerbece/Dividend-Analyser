@@ -51,11 +51,22 @@ class UserScreenController: UIViewController {
             
             /* Calculating the user current dividend income after (probably) updating their portofolio */
             if self.transactions.count != 0 {
-                var dividendValue : Double = 0
+                var dividendValue : Double = 0.00
                 for stock in self.transactions {
                     let portofolioForStock = Portofolio(stockData: stock)
                     if let stockDivValue = Double(portofolioForStock.stockDividend!) {
-                        dividendValue += stockDivValue
+                        
+                        switch portofolioForStock.stockPayRate {
+                        case "quarterly":
+                            dividendValue += 4 * stockDivValue
+                            break
+                        case "monthly":
+                            dividendValue += 12 * stockDivValue
+                            break
+                        default:
+                            print("Stock has a wrong payrate parameter.")
+                            break
+                        }
                     }
                 }
                 DispatchQueue.main.async {
@@ -109,11 +120,22 @@ class UserScreenController: UIViewController {
                 
                 /* Calculating the user current dividend income after the initial download */
                 if self.transactions.count != 0 {
-                    var dividendValue : Double = 0
+                    var dividendValue : Double = 0.00
                     for stock in self.transactions {
                         let portofolioForStock = Portofolio(stockData: stock)
                         if let stockDivValue = Double(portofolioForStock.stockDividend!) {
-                            dividendValue += stockDivValue
+                            
+                            switch portofolioForStock.stockPayRate {
+                            case "quarterly":
+                                dividendValue += 4 * stockDivValue
+                                break
+                            case "monthly":
+                                dividendValue += 12 * stockDivValue
+                                break
+                            default:
+                                print("Stock has a wrong payrate parameter.")
+                                break
+                            }
                         }
                     }
                     DispatchQueue.main.async {
