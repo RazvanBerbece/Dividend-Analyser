@@ -25,3 +25,5 @@ Application which uses an API made in JS (NodeJS), with a Client made in Swift. 
 # Contributors :
    1. Antonio Berbece
    2. Sergiu-Stefan Tomescu
+
+testing new workflow

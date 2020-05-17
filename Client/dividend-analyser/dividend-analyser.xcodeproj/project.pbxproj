@@ -37,6 +37,9 @@
 		6FFD123A246C9D7B00CB16C0 /* UserPortofolioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFD1239246C9D7B00CB16C0 /* UserPortofolioController.swift */; };
 		6FFD123B246C9D7B00CB16C0 /* UserPortofolioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFD1239246C9D7B00CB16C0 /* UserPortofolioController.swift */; };
 		6FFD123C246C9D7B00CB16C0 /* UserPortofolioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFD1239246C9D7B00CB16C0 /* UserPortofolioController.swift */; };
+		A405C9E324717D50007548C9 /* client.swift in Sources */ = {isa = PBXBuildFile; fileRef = A405C9E224717D50007548C9 /* client.swift */; };
+		A405C9E424717D50007548C9 /* client.swift in Sources */ = {isa = PBXBuildFile; fileRef = A405C9E224717D50007548C9 /* client.swift */; };
+		A405C9E524717D50007548C9 /* client.swift in Sources */ = {isa = PBXBuildFile; fileRef = A405C9E224717D50007548C9 /* client.swift */; };
 		E410BF0A26136A9FFA057CCA /* Pods_dividend_analyser_dividend_analyserUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6855A7A14CB84244CE39553 /* Pods_dividend_analyser_dividend_analyserUITests.framework */; };
 		F31882C875399774D62C6376 /* Pods_dividend_analyser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4788815D13DB1808C25657AE /* Pods_dividend_analyser.framework */; };
 /* End PBXBuildFile section */
@@ -87,6 +90,7 @@
 		80202F11A911963C3D27BADD /* Pods_dividend_analyserTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dividend_analyserTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		91356CF458278A01F38BD19B /* Pods-dividend-analyserTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dividend-analyserTests.debug.xcconfig"; path = "Target Support Files/Pods-dividend-analyserTests/Pods-dividend-analyserTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A14025D3D7F6FA0E7AB9D39E /* Pods-dividend-analyser-dividend-analyserUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dividend-analyser-dividend-analyserUITests.debug.xcconfig"; path = "Target Support Files/Pods-dividend-analyser-dividend-analyserUITests/Pods-dividend-analyser-dividend-analyserUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		A405C9E224717D50007548C9 /* client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = client.swift; sourceTree = "<group>"; };
 		C6855A7A14CB84244CE39553 /* Pods_dividend_analyser_dividend_analyserUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dividend_analyser_dividend_analyserUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9252F49F455A7A5DF45F176 /* Pods-dividend-analyserTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dividend-analyserTests.release.xcconfig"; path = "Target Support Files/Pods-dividend-analyserTests/Pods-dividend-analyserTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -202,6 +206,7 @@
 		6F8E6BC324687A3200FF7695 /* Client */ = {
 			isa = PBXGroup;
 			children = (
+				A405C9E124717D28007548C9 /* source */,
 				6FFD1233246C871D00CB16C0 /* Views */,
 			);
 			path = Client;
@@ -239,6 +244,14 @@
 				6FFD1239246C9D7B00CB16C0 /* UserPortofolioController.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		A405C9E124717D28007548C9 /* source */ = {
+			isa = PBXGroup;
+			children = (
+				A405C9E224717D50007548C9 /* client.swift */,
+			);
+			path = source;
 			sourceTree = "<group>";
 		};
 		C0D66F3B70B3E1AEE92F91B9 /* Frameworks */ = {
@@ -497,6 +510,7 @@
 				6FFD123A246C9D7B00CB16C0 /* UserPortofolioController.swift in Sources */,
 				6FFD1235246C87AA00CB16C0 /* AddStocksController.swift in Sources */,
 				6F687661246B178300BD45C6 /* TransactionClient.swift in Sources */,
+				A405C9E324717D50007548C9 /* client.swift in Sources */,
 				6F12C3A2246DA57B00806D6E /* Portofolio.swift in Sources */,
 				6F8E6B972468798600FF7695 /* ViewController.swift in Sources */,
 				6F8E6B932468798600FF7695 /* AppDelegate.swift in Sources */,
@@ -515,6 +529,7 @@
 				6F12C3A3246DA57B00806D6E /* Portofolio.swift in Sources */,
 				6FFD123B246C9D7B00CB16C0 /* UserPortofolioController.swift in Sources */,
 				6FB48F7024699C2E002B09EB /* SettingsScreenController.swift in Sources */,
+				A405C9E424717D50007548C9 /* client.swift in Sources */,
 				6F687662246B178300BD45C6 /* TransactionClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -529,6 +544,7 @@
 				6F12C3A4246DA57B00806D6E /* Portofolio.swift in Sources */,
 				6FFD123C246C9D7B00CB16C0 /* UserPortofolioController.swift in Sources */,
 				6FB48F7124699C2E002B09EB /* SettingsScreenController.swift in Sources */,
+				A405C9E524717D50007548C9 /* client.swift in Sources */,
 				6F687663246B178300BD45C6 /* TransactionClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

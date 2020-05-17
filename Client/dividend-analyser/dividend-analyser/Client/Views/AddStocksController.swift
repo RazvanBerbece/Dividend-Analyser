@@ -26,6 +26,7 @@ class AddStocksController: UIViewController {
     
     /* Managers */
     var firebaseClient : FirebaseClient?
+    var newClient = Client()
     
     /* IBActions and button functions */
     @IBAction func searchSymbol() {
@@ -33,10 +34,19 @@ class AddStocksController: UIViewController {
         let symbolInput = self.symbolInputLabel.text // this will be passed to the API
         
         if symbolInput?.count == 0 {
+            
             print("No input. Try searching for a stock symbol.")
         }
         else {
             /* Client Search - Tomi call here */
+            newClient.getDataFrom(symbolInput!){
+                (data) in
+                self.symbolLabel.text = data[0].uppercased()
+                self.valueLabel.text = data[1]
+                self.methodLabel.text = data[3]
+                
+                self.APIstock = data
+            }
             /* Update APIstock if successful */
         }
         
@@ -52,10 +62,10 @@ class AddStocksController: UIViewController {
             self.portofolio = [[]]
         }
         
-        /*
-         self.APIstock = ["AAPL", "0.77"] // test stock transaction
-         self.portofolio.append(self.APIstock)
-         */
+        
+        //self.APIstock = ["AAPL", "0.77"] // test stock transaction
+        self.portofolio.append(self.APIstock)
+        
         
         self.firebaseClient = FirebaseClient(user: self.User!)
         
