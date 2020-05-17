@@ -47,7 +47,12 @@ class UserScreenController: UIViewController {
     
     @IBAction func unwind(unwindSegue: UIStoryboardSegue) {
         if let stocksSourceController = unwindSegue.source as? AddStocksController {
-            transactions = stocksSourceController.portofolio
+            self.transactions = stocksSourceController.portofolio
+        }
+        else if let portofolioController = unwindSegue.source as? UserPortofolioController {
+            if portofolioController.dividendValue != 0 {
+                self.amountLabel.text = "$\(portofolioController.dividendValue)"
+            }
         }
     }
     

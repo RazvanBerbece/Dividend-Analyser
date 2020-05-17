@@ -58,12 +58,14 @@ PODS:
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
   - PromisesObjC (1.2.8)
+  - SwiftCSV (0.5.6)
   - SwiftyJSON (4.3.0)
 
 DEPENDENCIES:
   - Alamofire (~> 5.1)
   - Firebase/Auth
   - Firebase/Database
+  - SwiftCSV
   - SwiftyJSON (~> 4.0)
 
 SPEC REPOS:
@@ -83,6 +85,7 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - PromisesObjC
+    - SwiftCSV
     - SwiftyJSON
 
 SPEC CHECKSUMS:
@@ -101,8 +104,9 @@ SPEC CHECKSUMS:
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
+  SwiftCSV: efb4a15dd7f2f1212b3d6986f97a3369ff6c5100
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
 
-PODFILE CHECKSUM: aacfad104f4ef22caddb83b1dfb0d7dfb043622d
+PODFILE CHECKSUM: d546713738fcd37160d4b3e621faaaf40b19ac7f
 
 COCOAPODS: 1.9.0.beta.2

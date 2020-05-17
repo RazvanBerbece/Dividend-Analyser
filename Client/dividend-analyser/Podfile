@@ -10,6 +10,7 @@ target 'dividend-analyser' do
   pod 'Firebase/Database'
   pod 'SwiftyJSON', '~> 4.0'
   pod 'Alamofire', '~> 5.1'
+  pod "SwiftCSV"
 
   target 'dividend-analyserTests' do
     inherit! :search_paths

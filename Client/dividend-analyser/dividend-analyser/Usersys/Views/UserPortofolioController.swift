@@ -15,6 +15,9 @@ class UserPortofolioController: UIViewController, UITableViewDelegate, UITableVi
     var model = [Portofolio]() // used to populate TableView
     var portofolioDataFromFirebase : [[String]]?
     
+    /* Dividend Value Result */
+    var dividendValue : Double?
+    
     override func viewDidLoad() {
         
         /* Setting Delegates & Table View constants */
@@ -29,8 +32,13 @@ class UserPortofolioController: UIViewController, UITableViewDelegate, UITableVi
             print("No symbols found in user's portofolio.")
         }
         else {
+            self.dividendValue = 0.00
             for stock in portofolioDataFromFirebase! {
-                model.append(Portofolio(stockData: stock))
+                let portofolioForStock = Portofolio(stockData: stock)
+                if let stockDivValue = Double(portofolioForStock.stockDividend!) {
+                    self.dividendValue! += stockDivValue
+                }
+                model.append(portofolioForStock)
             }
         }
         

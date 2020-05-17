@@ -399,13 +399,21 @@
                                     <action selector="searchSymbol" destination="1c5-RQ-iSL" eventType="touchUpInside" id="WTo-d9-XGX"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xzO-eC-OUS">
+                                <rect key="frame" x="252" y="248" width="110" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.71849222720000006" green="0.71849222720000006" blue="0.71849222720000006" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="LxP-Yu-Wl7" firstAttribute="leading" secondItem="rmK-KE-1GR" secondAttribute="leading" id="06W-2n-lgc"/>
+                            <constraint firstItem="xzO-eC-OUS" firstAttribute="trailing" secondItem="nDw-6d-Cue" secondAttribute="trailing" id="3Ch-3h-MPU"/>
                             <constraint firstItem="f3A-HM-NoK" firstAttribute="centerY" secondItem="Gy7-Hp-BOv" secondAttribute="centerY" id="4sR-r8-QHa"/>
                             <constraint firstItem="9NE-Sc-Xz0" firstAttribute="top" secondItem="SES-ck-r2P" secondAttribute="top" constant="78.5" id="5CD-pu-v8J"/>
                             <constraint firstItem="Aeu-mv-7bl" firstAttribute="centerY" secondItem="nDw-6d-Cue" secondAttribute="centerY" id="5Zu-Iw-nL9"/>
+                            <constraint firstItem="xzO-eC-OUS" firstAttribute="top" secondItem="nDw-6d-Cue" secondAttribute="top" id="65I-8U-1Nl"/>
                             <constraint firstItem="duD-CC-jmi" firstAttribute="top" secondItem="Gy7-Hp-BOv" secondAttribute="bottom" constant="19" id="7OZ-51-cSB"/>
                             <constraint firstItem="f3A-HM-NoK" firstAttribute="baseline" secondItem="kC0-G2-YYe" secondAttribute="baseline" id="DN3-Ns-M68"/>
                             <constraint firstItem="rmK-KE-1GR" firstAttribute="leading" secondItem="hEO-vD-bXS" secondAttribute="leadingMargin" id="GpO-X2-OX4"/>
@@ -417,6 +425,7 @@
                             <constraint firstItem="Map-Ei-geV" firstAttribute="trailing" secondItem="duD-CC-jmi" secondAttribute="trailing" id="NcJ-b4-jmf"/>
                             <constraint firstItem="wBe-Uu-tyR" firstAttribute="top" secondItem="nDw-6d-Cue" secondAttribute="bottom" constant="76" id="Nxk-5z-pDY"/>
                             <constraint firstItem="SES-ck-r2P" firstAttribute="trailing" secondItem="9NE-Sc-Xz0" secondAttribute="trailing" constant="16" id="O55-Ot-VWT"/>
+                            <constraint firstItem="xzO-eC-OUS" firstAttribute="bottom" secondItem="nDw-6d-Cue" secondAttribute="bottom" id="Q0B-Mk-pYA"/>
                             <constraint firstItem="f3A-HM-NoK" firstAttribute="leading" secondItem="duD-CC-jmi" secondAttribute="leading" id="Rlp-6N-djI"/>
                             <constraint firstItem="rmK-KE-1GR" firstAttribute="top" secondItem="SES-ck-r2P" secondAttribute="top" constant="74" id="TLd-DK-J1g"/>
                             <constraint firstItem="LxP-Yu-Wl7" firstAttribute="leading" secondItem="nDw-6d-Cue" secondAttribute="leading" id="YLb-v9-Qrc"/>
@@ -434,6 +443,7 @@
                             <constraint firstItem="LxP-Yu-Wl7" firstAttribute="top" secondItem="hEO-vD-bXS" secondAttribute="top" constant="213" id="uRS-xn-bQ6"/>
                             <constraint firstItem="nDw-6d-Cue" firstAttribute="top" secondItem="hEO-vD-bXS" secondAttribute="top" constant="248" id="uXY-m3-Gy1"/>
                             <constraint firstItem="Map-Ei-geV" firstAttribute="leading" secondItem="duD-CC-jmi" secondAttribute="leading" id="uXi-7d-tj7"/>
+                            <constraint firstItem="xzO-eC-OUS" firstAttribute="leading" secondItem="SES-ck-r2P" secondAttribute="leading" constant="252" id="usR-dI-Lwl"/>
                             <constraint firstItem="SES-ck-r2P" firstAttribute="trailing" secondItem="Aeu-mv-7bl" secondAttribute="trailing" constant="14" id="yAk-Ua-XTp"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SES-ck-r2P"/>
@@ -441,6 +451,7 @@
                     <navigationItem key="navigationItem" id="koc-Vc-EQZ"/>
                     <connections>
                         <outlet property="methodLabel" destination="duD-CC-jmi" id="fLJ-D9-gzY"/>
+                        <outlet property="predictionLabel" destination="xzO-eC-OUS" id="PWM-xG-OHM"/>
                         <outlet property="symbolInputLabel" destination="nDw-6d-Cue" id="I7q-5J-LdI"/>
                         <outlet property="symbolLabel" destination="wBe-Uu-tyR" id="iYy-eg-NBO"/>
                         <outlet property="valueLabel" destination="Gy7-Hp-BOv" id="WZZ-nC-Vpm"/>
@@ -449,7 +460,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sdQ-SD-WGm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="BxQ-K7-bOB" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1928" y="-163"/>
+            <point key="canvasLocation" x="1927.5362318840582" y="-163.39285714285714"/>
         </scene>
         <!--Settings Screen Controller-->
         <scene sceneID="rGK-ZL-dwa">
