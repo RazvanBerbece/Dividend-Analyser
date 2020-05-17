@@ -9,13 +9,14 @@
 import UIKit
 import FirebaseAuth
 
-class AddStocksController: UIViewController {
+class AddStocksController: UIViewController, UITextFieldDelegate {
     
     /* IBOutlets and View Variables */
     @IBOutlet weak var symbolInputLabel: UITextField! // Also used as a warning if no data is found for given stock symbol
     @IBOutlet weak var methodLabel: UILabel!
     @IBOutlet weak var valueLabel: UILabel!
     @IBOutlet weak var symbolLabel: UILabel!
+    @IBOutlet weak var predictionLabel: UILabel!
     
     /* User Variables */
     var portofolio : [[String]] = [] // this will be updated and sent
@@ -26,6 +27,7 @@ class AddStocksController: UIViewController {
     
     /* Managers */
     var firebaseClient : FirebaseClient?
+    let predictor = SymbolHelper()
     
     /* IBActions and button functions */
     @IBAction func searchSymbol() {
@@ -74,16 +76,28 @@ class AddStocksController: UIViewController {
         
         // Do any additional setup after loading the view.
         
-        //Looks for single or multiple taps.
+        // Looks for single or multiple taps.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         
         view.addGestureRecognizer(tap)
+        
+        self.symbolInputLabel.addTarget(self, action: #selector(AddStocksController.textFieldDidChange(_:)), for: .editingChanged)
     }
     
-    //Calls this function when the tap is recognized.
+    // Calls this function when the tap is recognized.
     @objc func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
+    }
+    
+    // Calls this function to predict symbol input
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        self.predictor.getClosestStrings(current: textField.text!) { // We change the value of the predictedLabel with whatever result we get from the SymbolHelper method
+            (predicted) in
+            DispatchQueue.main.async {
+                self.predictionLabel.text = predicted
+            }
+        }
     }
     
     @IBAction func unwind(unwindSegue: UIStoryboardSegue) {
