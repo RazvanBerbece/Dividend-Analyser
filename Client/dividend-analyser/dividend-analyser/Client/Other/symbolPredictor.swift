@@ -40,8 +40,7 @@ public class SymbolHelper {
         
         for symbol in csvNamedColumns["Symbol"]! {
             if symbol.contains(uppercasedCurrent) {
-                print(symbol)
-                completion(symbol)
+                completion(symbol) // Completion handler with whatever closest prediction string is on
             }
         }
         
