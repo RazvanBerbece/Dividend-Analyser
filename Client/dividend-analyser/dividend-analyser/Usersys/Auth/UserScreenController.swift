@@ -48,10 +48,19 @@ class UserScreenController: UIViewController {
     @IBAction func unwind(unwindSegue: UIStoryboardSegue) {
         if let stocksSourceController = unwindSegue.source as? AddStocksController {
             self.transactions = stocksSourceController.portofolio
-        }
-        else if let portofolioController = unwindSegue.source as? UserPortofolioController {
-            if portofolioController.dividendValue != 0 {
-                self.amountLabel.text = "$\(portofolioController.dividendValue)"
+            
+            /* Calculating the user current dividend income after (probably) updating their portofolio */
+            if self.transactions.count != 0 {
+                var dividendValue : Double = 0
+                for stock in self.transactions {
+                    let portofolioForStock = Portofolio(stockData: stock)
+                    if let stockDivValue = Double(portofolioForStock.stockDividend!) {
+                        dividendValue += stockDivValue
+                    }
+                }
+                DispatchQueue.main.async {
+                    self.amountLabel.text = "$\(dividendValue)"
+                }
             }
         }
     }
@@ -97,6 +106,20 @@ class UserScreenController: UIViewController {
             (result) in
             if result.count > 0 {
                 self.transactions = result
+                
+                /* Calculating the user current dividend income after the initial download */
+                if self.transactions.count != 0 {
+                    var dividendValue : Double = 0
+                    for stock in self.transactions {
+                        let portofolioForStock = Portofolio(stockData: stock)
+                        if let stockDivValue = Double(portofolioForStock.stockDividend!) {
+                            dividendValue += stockDivValue
+                        }
+                    }
+                    DispatchQueue.main.async {
+                        self.amountLabel.text = "$\(dividendValue)"
+                    }
+                }
             }
             else {
                 print("Nothing received from the download.")

@@ -14,8 +14,8 @@ public class Portofolio : NSObject {
     // let stockIcon : String?
     let stockName : String?
     let stockDividend : String?
-    // let stockCurrency : String?
-    // let stockPayRate : String?
+    let stockCurrency : String?
+    let stockPayRate : String?
     
     init(stockData: [String]) {
         // One element in the [[String]] represents a single stock's information table
@@ -25,23 +25,28 @@ public class Portofolio : NSObject {
         case 1:
             self.stockName = stockData[0]
             self.stockDividend = ""
+            self.stockCurrency = ""
+            self.stockPayRate = ""
         case 2:
             self.stockName = stockData[0]
             self.stockDividend = stockData[1]
-            /*
-             case 3:
-             self.stockName = stockData[0]
-             self.stockDividend = stockData[1]
-             self.stockCurrency = stockData[2]
-             case 4:
-             self.stockName = stockData[0]
-             self.stockDividend = stockData[1]
-             self.stockCurrency = stockData[2]
-             self.stockPayRate = stockData[3]
-             */
+            self.stockCurrency = ""
+            self.stockPayRate = ""
+        case 3:
+            self.stockName = stockData[0]
+            self.stockDividend = stockData[1]
+            self.stockCurrency = stockData[2]
+            self.stockPayRate = ""
+        case 4:
+            self.stockName = stockData[0]
+            self.stockDividend = stockData[1]
+            self.stockCurrency = stockData[2]
+            self.stockPayRate = stockData[3]
         default:
             self.stockName = ""
             self.stockDividend = ""
+            self.stockCurrency = ""
+            self.stockPayRate = ""
             print("No data for portofolio init !")
         }
         
