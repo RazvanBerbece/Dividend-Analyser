@@ -62,7 +62,6 @@ public class FirebaseClient {
                 completion([[]])
             }
         }
-        
     }
     
 }

@@ -15,7 +15,7 @@ public class SymbolHelper {
     private let csvFile : String = "companylist"
     
     init() {
-        if let csvFileURL = Bundle.main.url(forResource: self.csvFile, withExtension: "csv") {
+        if let csvFileURL = Bundle.main.url(forResource: self.csvFile, withExtension: "csv") { // finding the csv list of all the symbols in the App Bundle
             print(csvFileURL)
             do { // try to read the data at the file as CSV in Swift
                 self.csv = try CSV(url: csvFileURL)

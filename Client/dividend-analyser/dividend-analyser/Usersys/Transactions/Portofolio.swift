@@ -12,10 +12,10 @@ import Foundation
 public class Portofolio : NSObject {
     
     // let stockIcon : String?
-    let stockName : String?
-    let stockDividend : String?
-    let stockCurrency : String?
-    let stockPayRate : String?
+    private let stockName : String?
+    private let stockDividend : String?
+    private let stockCurrency : String?
+    private let stockPayRate : String?
     
     init(stockData: [String]) {
         // One element in the [[String]] represents a single stock's information table
@@ -50,6 +50,23 @@ public class Portofolio : NSObject {
             print("No data for portofolio init !")
         }
         
+    }
+    
+    /* Getter methods for fields */
+    public func getName() -> String {
+        return self.stockName!
+    }
+    
+    public func getDividend() -> String {
+        return self.stockDividend!
+    }
+    
+    public func getCurrency() -> String {
+        return self.stockCurrency!
+    }
+    
+    public func getRate() -> String {
+        return self.stockPayRate!
     }
     
 }
