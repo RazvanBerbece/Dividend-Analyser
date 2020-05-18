@@ -45,8 +45,8 @@ class UserPortofolioController: UIViewController, UITableViewDelegate, UITableVi
             }
             else {
                 print("An error occured while deleting stock from database")
-                self.deleteResultLabel.text = "An error occured while deleting stock from database."
                 
+                self.deleteResultLabel.text = "An error occured while deleting stock from database."
                 self.deleteResultLabel.textColor = UIColor(ciColor: .red)
             }
         }
@@ -57,6 +57,8 @@ class UserPortofolioController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     override func viewDidLoad() {
+        
+        self.view.backgroundColor = UIColor.fromGradientWithDirection(.topToBottom, frame: self.view.frame, colors: [UIColor.gray, UIColor.lightGray, UIColor.lightGray, UIColor.lightGray, UIColor.lightGray, UIColor.white, UIColor.white])
         
         /* Setting Delegates & Table View constants */
         self.portofolioTableView.delegate = self
@@ -109,7 +111,19 @@ class UserPortofolioController: UIViewController, UITableViewDelegate, UITableVi
         
         cell.textLabel?.text = model[indexPath.row].getName()
         cell.detailTextLabel?.text = model[indexPath.row].getDividend()
+        
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 20)
+        cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 15)
+        
+        cell.textLabel?.textColor = UIColor(ciColor: .black)
+        cell.detailTextLabel?.textColor = UIColor(ciColor: .black)
+        
         cell.accessoryView = button
+        
+        cell.layer.backgroundColor = UIColor.clear.cgColor
+        cell.backgroundColor = .clear
+        tableView.layer.backgroundColor = UIColor.clear.cgColor
+        tableView.backgroundColor = .clear
         
         return cell;
     }
