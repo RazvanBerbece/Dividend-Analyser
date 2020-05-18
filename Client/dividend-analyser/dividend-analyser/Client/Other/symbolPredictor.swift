@@ -39,7 +39,7 @@ public class SymbolHelper {
         let uppercasedCurrent = current.uppercased()
         
         for symbol in csvNamedColumns["Symbol"]! {
-            if symbol.contains(uppercasedCurrent) {
+            if symbol.contains(uppercasedCurrent) || symbol == uppercasedCurrent {
                 completion(symbol) // Completion handler with whatever closest prediction string is on
             }
         }

@@ -37,20 +37,29 @@ class AddStocksController: UIViewController, UITextFieldDelegate {
         let symbolInput = self.symbolInputLabel.text // this will be passed to the API
         
         if symbolInput?.count == 0 {
-            
             print("No input. Try searching for a stock symbol.")
         }
         else {
             /* Client Search - Tomi call here */
-            newClient.getDataFrom(symbolInput!){
+            newClient.getDataFrom(symbolInput!) {
                 (data) in
-                self.symbolLabel.text = data[0].uppercased()
-                self.valueLabel.text = data[1]
-                self.methodLabel.text = data[3]
-                
-                self.APIstock = data
+                if data.count != 0 {
+                    self.symbolLabel.text = data[0].uppercased()
+                    self.valueLabel.text = data[1]
+                    self.methodLabel.text = data[3]
+                    
+                    self.APIstock = data
+                    
+                    self.addStockResultLabel.text = "Press the button below to add to your portofolio."
+                    self.addStockResultLabel.textColor = UIColor(ciColor: .green)
+                }
+                else {
+                    print("No stock found using the given symbol.")
+                    
+                    self.addStockResultLabel.text = "No stock found using the given symbol. Try again."
+                    self.addStockResultLabel.textColor = UIColor(ciColor: .red)
+                }
             }
-            /* Update APIstock if successful */
         }
         
     }
@@ -69,7 +78,7 @@ class AddStocksController: UIViewController, UITextFieldDelegate {
             }
         }
         
-        // self.APIstock = ["AAPL", "0.77"] // test stock transaction
+        // self.APIstock = ["AAPL", "0.77", ...] // test stock transaction
         self.portofolio[self.portofolio.count - 1].append(contentsOf: self.APIstock)
         
         
@@ -93,6 +102,9 @@ class AddStocksController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewDidLoad() {
+        
+        self.view.backgroundColor = UIColor.fromGradientWithDirection(.topToBottom, frame: self.view.frame, colors: [UIColor.gray, UIColor.lightGray, UIColor.lightGray, UIColor.lightGray, UIColor.lightGray, UIColor.white, UIColor.white])
+        
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.

@@ -38,6 +38,8 @@ class UserScreenController: UIViewController {
     
     override func viewDidLoad() {
         
+        self.view.backgroundColor = UIColor.fromGradientWithDirection(.topToBottom, frame: self.view.frame, colors: [UIColor.gray, UIColor.lightGray, UIColor.white])
+        
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
@@ -46,6 +48,8 @@ class UserScreenController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        self.view.backgroundColor = UIColor.fromGradientWithDirection(.topToBottom, frame: self.view.frame, colors: [UIColor.gray, UIColor.lightGray, UIColor.lightGray, UIColor.lightGray, UIColor.lightGray, UIColor.white, UIColor.white])
         
         super.viewWillAppear(animated)
         
