@@ -11,6 +11,7 @@ target 'dividend-analyser' do
   pod 'SwiftyJSON', '~> 4.0'
   pod 'Alamofire', '~> 5.1'
   pod "SwiftCSV"
+  pod 'UIGradient'
 
   target 'dividend-analyserTests' do
     inherit! :search_paths

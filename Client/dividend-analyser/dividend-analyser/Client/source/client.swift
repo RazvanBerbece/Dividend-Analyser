@@ -35,7 +35,7 @@ public class Client
     }
     
     /**
-     *@param sufix is given by the user
+     * @param sufix is given by the user
      * @return a List of Strings containing data found at the requested URL
      */
     public func getDataFrom(_ sufix : String, completion: @escaping ([String]) -> Void)
@@ -50,7 +50,6 @@ public class Client
                 (response) in
                 switch response.result {
                 case .success:
-                    
                     //converting response from Data type to String type
                     newData = response.data
                     let jsonString = String(data: newData!, encoding: .utf8)
@@ -65,8 +64,8 @@ public class Client
                         completion(dataList)
                     }
                 case .failure(let error):
-                    print(error)
-                    print("No data was found.")
+                    print("error = \(error)")
+                    completion([])
                 }
         }
     }

@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import UIGradient
 
 class ViewController: UIViewController {
     
@@ -149,6 +150,8 @@ class ViewController: UIViewController {
         //        gradient.frame = view.bounds
         //        gradient.colors = [UIColor.white.cgColor, UIColor.gray.cgColor]
         //        self.view.layer.insertSublayer(gradient, at: 0)
+        
+        self.view.backgroundColor = UIColor.fromGradientWithDirection(.topToBottom, frame: self.view.frame, colors: [UIColor.gray, UIColor.lightGray, UIColor.lightGray, UIColor.lightGray, UIColor.lightGray, UIColor.white, UIColor.white])
         
         /* Handler for Firebase functionality */
         self.handle = Auth.auth().addStateDidChangeListener { (auth, user) in

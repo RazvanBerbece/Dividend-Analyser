@@ -15,17 +15,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Analyser" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fuG-by-9wh">
-                                <rect key="frame" x="0.0" y="471" width="414" height="56"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="56" id="3E2-x6-QKI"/>
-                                </constraints>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dividend" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R0S-1S-VKM">
+                                <rect key="frame" x="20" y="342" width="264" height="50"/>
                                 <fontDescription key="fontDescription" name="Didot-Italic" family="Didot" pointSize="40"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dividend" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R0S-1S-VKM">
-                                <rect key="frame" x="0.0" y="343" width="414" height="70"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Analyser" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fuG-by-9wh">
+                                <rect key="frame" x="108" y="400" width="286" height="50"/>
                                 <fontDescription key="fontDescription" name="Didot-Italic" family="Didot" pointSize="40"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -33,13 +30,12 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="fuG-by-9wh" firstAttribute="top" secondItem="R0S-1S-VKM" secondAttribute="bottom" constant="58" id="2yn-sn-cVR"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="fuG-by-9wh" secondAttribute="bottom" constant="335" id="Gm9-B0-PSg"/>
-                            <constraint firstItem="R0S-1S-VKM" firstAttribute="trailing" secondItem="fuG-by-9wh" secondAttribute="trailing" id="Pjh-EA-CCC"/>
-                            <constraint firstItem="R0S-1S-VKM" firstAttribute="leading" secondItem="fuG-by-9wh" secondAttribute="leading" id="RKH-WG-NcY"/>
-                            <constraint firstItem="R0S-1S-VKM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="XjK-WB-L4Y"/>
-                            <constraint firstItem="R0S-1S-VKM" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Yf8-lw-dzD"/>
-                            <constraint firstItem="R0S-1S-VKM" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="299" id="b3v-df-7so"/>
+                            <constraint firstItem="R0S-1S-VKM" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="5ea-Wh-dRT"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="R0S-1S-VKM" secondAttribute="trailing" constant="130" id="PNS-hc-DQI"/>
+                            <constraint firstItem="fuG-by-9wh" firstAttribute="trailing" secondItem="Ze5-6b-2t3" secondAttribute="trailingMargin" id="Rvt-h7-hvA"/>
+                            <constraint firstItem="R0S-1S-VKM" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="298" id="htF-vf-w7j"/>
+                            <constraint firstItem="fuG-by-9wh" firstAttribute="top" secondItem="R0S-1S-VKM" secondAttribute="bottom" constant="8" id="usD-IA-xyl"/>
+                            <constraint firstItem="fuG-by-9wh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="108" id="w0k-Ls-LmM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

@@ -127,6 +127,9 @@ class SettingsScreenController: UIViewController {
     }
     
     override func viewDidLoad() {
+        
+        self.view.backgroundColor = UIColor.fromGradientWithDirection(.topToBottom, frame: self.view.frame, colors: [UIColor.gray, UIColor.lightGray, UIColor.lightGray, UIColor.lightGray, UIColor.lightGray, UIColor.white, UIColor.white])
+        
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
