@@ -7,13 +7,54 @@
 //
 
 import UIKit
+import Firebase
 
 class UserPortofolioController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     /* IBOutlets and view variables */
     @IBOutlet weak var portofolioTableView: UITableView!
+    @IBOutlet weak var deleteResultLabel: UILabel!
     var model = [Portofolio]() // used to populate TableView
     var portofolioDataFromFirebase : [[String]]?
+    
+    /* Managers */
+    let firebaseClient = FirebaseClient(user: Auth.auth().currentUser!)
+    
+    /* IBActions and button functions */
+    @IBAction func deleteStockFromPortofolio(stock: Portofolio) {
+        
+        /* Finding the stock by name in the model */
+        for (index, portofolio) in model.enumerated() {
+            if portofolio.getName() == stock.getName() {
+                /* Remove stock from both model and the [[String]] portofolio */
+                portofolioDataFromFirebase?.remove(at: index)
+                model.remove(at: index)
+                print("Sucessfully deleted record from local portofolio.")
+                break
+            }
+        }
+        
+        /* Uploading the updated portofolio to Firebase Database */
+        self.firebaseClient.uploadTransactionToUser(transaction: portofolioDataFromFirebase!) {
+            (result) in
+            if result == true {
+                print("Sucessfully deleted record from database.")
+                
+                self.deleteResultLabel.text = "Successfully deleted stock from portofolio."
+                self.deleteResultLabel.textColor = UIColor(ciColor: .green)
+            }
+            else {
+                print("An error occured while deleting stock from database")
+                self.deleteResultLabel.text = "An error occured while deleting stock from database."
+                
+                self.deleteResultLabel.textColor = UIColor(ciColor: .red)
+            }
+        }
+        
+        /* Reload data with the updated portofolio */
+        self.portofolioTableView.reloadData()
+        
+    }
     
     override func viewDidLoad() {
         
@@ -50,12 +91,25 @@ class UserPortofolioController: UIViewController, UITableViewDelegate, UITableVi
         return model.count
     }
     
+    /* This will get called to delete a specific stock from the user's portofolio */
+    @objc func tableViewDelete(sender: UIButton) {
+        self.deleteStockFromPortofolio(stock: model[sender.tag])
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = UITableViewCell(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: "cell")
         
-        cell.textLabel?.text = model[indexPath.row].stockName
-        cell.detailTextLabel?.text = model[indexPath.row].stockDividend
+        /* Creating the UIButton for the accessory type of the cell */
+        let button = UIButton(type: .custom)
+        button.setImage(UIImage(systemName: "xmark")!.withTintColor(UIColor(ciColor: .blue)), for: .normal)
+        button.addTarget(self, action: #selector(tableViewDelete), for: .touchUpInside)
+        button.sizeToFit()
+        button.tag = indexPath.row // this keeps track of the row index -> can access model[tag]
+        
+        cell.textLabel?.text = model[indexPath.row].getName()
+        cell.detailTextLabel?.text = model[indexPath.row].getDividend()
+        cell.accessoryView = button
         
         return cell;
     }

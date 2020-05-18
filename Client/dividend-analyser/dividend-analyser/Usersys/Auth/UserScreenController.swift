@@ -41,8 +41,15 @@ class UserScreenController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        self.loadData()
+        // self.loadData()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        
+        self.loadData()
     }
     
     @IBAction func unwind(unwindSegue: UIStoryboardSegue) {
@@ -54,9 +61,9 @@ class UserScreenController: UIViewController {
                 var dividendValue : Double = 0.00
                 for stock in self.transactions {
                     let portofolioForStock = Portofolio(stockData: stock)
-                    if let stockDivValue = Double(portofolioForStock.stockDividend!) {
+                    if let stockDivValue = Double(portofolioForStock.getDividend()) {
                         
-                        switch portofolioForStock.stockPayRate {
+                        switch portofolioForStock.getRate() {
                         case "quarterly":
                             dividendValue += 4 * stockDivValue
                             break
@@ -73,6 +80,13 @@ class UserScreenController: UIViewController {
                     self.amountLabel.text = "$\(dividendValue)"
                 }
             }
+        }
+        else if let portofolioSourceController = unwindSegue.source as? UserPortofolioController {
+            self.transactions = portofolioSourceController.portofolioDataFromFirebase!
+            self.loadData() // load data as there could be an update made in the Portofolio screen
+        }
+        else if let settingsSourceController = unwindSegue.source as? SettingsScreenController {
+            self.loadData() // load data as there could be an update made in the Settings screen
         }
     }
     
@@ -123,9 +137,9 @@ class UserScreenController: UIViewController {
                     var dividendValue : Double = 0.00
                     for stock in self.transactions {
                         let portofolioForStock = Portofolio(stockData: stock)
-                        if let stockDivValue = Double(portofolioForStock.stockDividend!) {
+                        if let stockDivValue = Double(portofolioForStock.getDividend()) {
                             
-                            switch portofolioForStock.stockPayRate {
+                            switch portofolioForStock.getRate() {
                             case "quarterly":
                                 dividendValue += 4 * stockDivValue
                                 break
