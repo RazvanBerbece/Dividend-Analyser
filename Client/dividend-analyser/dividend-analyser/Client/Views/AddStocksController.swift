@@ -17,6 +17,7 @@ class AddStocksController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var valueLabel: UILabel!
     @IBOutlet weak var symbolLabel: UILabel!
     @IBOutlet weak var predictionLabel: UILabel!
+    @IBOutlet weak var addStockResultLabel: UILabel!
     
     /* User Variables */
     var portofolio : [[String]] = [] // this will be updated and sent
@@ -78,9 +79,15 @@ class AddStocksController: UIViewController, UITextFieldDelegate {
             (result) in
             if result == true {
                 print("Uploaded stock to portofolio !")
+                
+                self.addStockResultLabel.text = "Successfully added stock to portofolio."
+                self.addStockResultLabel.textColor = UIColor(ciColor: .green)
             }
             else {
                 print("Failed to upload stock to portofolio.")
+                
+                self.addStockResultLabel.text = "An error occured while adding stock to portofolio."
+                self.addStockResultLabel.textColor = UIColor(ciColor: .red)
             }
         }
     }
