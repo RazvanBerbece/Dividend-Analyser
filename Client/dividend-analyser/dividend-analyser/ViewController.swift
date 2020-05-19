@@ -145,12 +145,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         
-        /* Adding the gradient overlay to the main view */
-        //        let gradient = CAGradientLayer()
-        //        gradient.frame = view.bounds
-        //        gradient.colors = [UIColor.white.cgColor, UIColor.gray.cgColor]
-        //        self.view.layer.insertSublayer(gradient, at: 0)
-        
+        /* Creating a gradient background using UIGradient */
         self.view.backgroundColor = UIColor.fromGradientWithDirection(.topToBottom, frame: self.view.frame, colors: [UIColor.gray, UIColor.lightGray, UIColor.lightGray, UIColor.lightGray, UIColor.lightGray, UIColor.white, UIColor.white])
         
         /* Handler for Firebase functionality */

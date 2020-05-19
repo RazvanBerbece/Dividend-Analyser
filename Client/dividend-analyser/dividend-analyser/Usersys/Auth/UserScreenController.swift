@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import Firebase
+import UIGradient
 
 class UserScreenController: UIViewController {
     
@@ -49,6 +50,7 @@ class UserScreenController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
+        /* Creating a gradient background using UIGradient */
         self.view.backgroundColor = UIColor.fromGradientWithDirection(.topToBottom, frame: self.view.frame, colors: [UIColor.gray, UIColor.lightGray, UIColor.lightGray, UIColor.lightGray, UIColor.lightGray, UIColor.white, UIColor.white])
         
         super.viewWillAppear(animated)
@@ -81,7 +83,7 @@ class UserScreenController: UIViewController {
                     }
                 }
                 DispatchQueue.main.async {
-                    self.amountLabel.text = "$\(dividendValue)"
+                    self.amountLabel.text = "$\(String(format: "%.2f", dividendValue))"
                 }
             }
         }
@@ -157,7 +159,7 @@ class UserScreenController: UIViewController {
                         }
                     }
                     DispatchQueue.main.async {
-                        self.amountLabel.text = "$\(dividendValue)"
+                        self.amountLabel.text = "$\(String(format: "%.2f", dividendValue))"
                     }
                 }
             }

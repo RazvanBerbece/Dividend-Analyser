@@ -10,14 +10,16 @@ class Client {
 
     FinancialData(symbol, callback) { // getting data from IEX Cloud and returning it as a list of values
 
-      const finalLink = this.base_link + "/stock/" + symbol + "/dividends/3m?token=" + this.key;
+      /* IEX Cloud Batch Call for Dividends and Logo */
+      const finalLinkData = this.base_link + "/stock/" + "market/" + "batch?&types=dividends,logo&symbols=" + symbol + "&range=1y&token=" + this.key;
 
-      var options = { // request made with these options
-        url: finalLink,
+      var optionsCore = { // core request made with these options
+        url: finalLinkData,
         method: "get"
       };
 
-      request(options, (error, response, body) => {
+      /* Request for core data : stock name, stock dividend, etc */
+      request(optionsCore, (error, response, body) => {
 
         if (error) { 
           return callback(null, error);
@@ -27,13 +29,20 @@ class Client {
           var result = JSON.parse(body);
 
           // financial data values
-          const dividendValue = result[0].amount;
-          const cashValue = result[0].currency;
-          const frequencyValue = result[0].frequency;
+          const logoURL = result[`${symbol}`].logo.url;
+          const dividendValue = result[`${symbol}`].dividends[0].amount;
+          const cashValue = result[`${symbol}`].dividends[0].currency;
+          const frequencyValue = result[`${symbol}`].dividends[0].frequency;
 
-          const financialArray = [symbol, dividendValue, cashValue, frequencyValue] // contains all relevant values selected above
+          var financialArray = []; // contains all relevant values selected above
 
-          return callback(financialArray, false); // returning the response, which is found in body
+          financialArray.push(symbol);
+          financialArray.push(dividendValue);
+          financialArray.push(cashValue);
+          financialArray.push(frequencyValue);
+          financialArray.push(logoURL);
+
+          return callback(financialArray, false);
 
         }
 
