@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import FirebaseStorage
 
 /* Manages operations on the UID Firebase Storage (ie: the user portofolio) */
 public class FirebaseClient {
@@ -62,6 +63,53 @@ public class FirebaseClient {
                 completion([[]])
             }
         }
+    }
+    
+    /* Uploads to Firebase Storage the user's choice of profile picture */
+    public func uploadUserPhotoToStorage(image: UIImage, completion: @escaping (URL?) -> (Void)) {
+        
+        let userProfilePicRef = Storage.storage().reference().child("profilePics").child("\(String(describing: self.User!.uid))").child("profilePic.png")
+        
+        let imgData = image.pngData()
+        
+        userProfilePicRef.putData(imgData!, metadata: nil) {
+            (metadata, error) in
+            if error == nil {
+                userProfilePicRef.downloadURL(completion: {
+                    (url, error) in
+                    if error == nil {
+                        print("Got URL : \(String(describing: url))")
+                        completion(url)
+                    }
+                    else {
+                        print("URL error = \(String(describing: error))")
+                        completion(nil)
+                    }
+                })
+            }
+            else {
+                print("DATA error = \(String(describing: error))")
+                completion(nil)
+            }
+        }
+        
+    }
+    
+    public func downloadUserProfilePic(completion: @escaping (UIImage?) -> (Void)) {
+        
+        let userProfilePicRef = Storage.storage().reference().child("profilePics").child("\(String(describing: self.User!.uid))").child("profilePic.png")
+        
+        userProfilePicRef.getData(maxSize: 35 * 1024 * 1024) {
+            (data, error) in
+            if let error = error {
+                print("DOWNLOAD error = \(error)")
+                completion(nil)
+            }
+            else {
+                completion(UIImage(data: data!)!)
+            }
+        }
+        
     }
     
 }

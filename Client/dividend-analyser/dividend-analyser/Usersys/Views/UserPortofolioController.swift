@@ -134,7 +134,7 @@ class UserPortofolioController: UIViewController, UITableViewDelegate, UITableVi
                 
                 let url = URL(string: "\(model[indexPath.row].getLogoURL())")
                 // Downsampling
-                let processor = DownsamplingImageProcessor(size: CGSize(width: 125, height: 125))
+                let processor = DownsamplingImageProcessor(size: CGSize(width: 65, height: 65))
                 cell.imageView!.kf.indicatorType = .activity
                 cell.imageView!.kf.setImage(
                     with: url,
@@ -149,9 +149,9 @@ class UserPortofolioController: UIViewController, UITableViewDelegate, UITableVi
                     result in
                     switch result {
                     case .success(let value):
-                        print("Task done for: \(value.source.url?.absoluteString ?? "")")
+                        print("value = \(value)")
                     case .failure(let error):
-                        print("Job failed: \(error.localizedDescription)")
+                        print("error = \(error)")
                     }
                 }
             }

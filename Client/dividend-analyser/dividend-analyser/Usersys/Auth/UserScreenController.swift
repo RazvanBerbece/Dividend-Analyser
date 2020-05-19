@@ -10,12 +10,16 @@ import UIKit
 import FirebaseAuth
 import Firebase
 import UIGradient
+import Kingfisher
 
 class UserScreenController: UIViewController {
     
     /* IBOutlets and view variables */
     @IBOutlet weak var userGreet: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
+    @IBOutlet weak var profilePictureView: UIImageView!
+    @IBOutlet weak var updatePicButton: UIButton!
+    var imagePicker = UIImagePickerController()
     
     /* User Data Variables */
     var User : User?
@@ -39,16 +43,34 @@ class UserScreenController: UIViewController {
     
     override func viewDidLoad() {
         
+        /* Making the profile picture view look like a circle & Other edits */
+        self.profilePictureView.makeRoundCorners(byRadius: 100)
+        self.profilePictureView.contentMode = .scaleAspectFit
+        
+        /* Load profile picture or use placeholder */
+        self.FirebaseClient?.downloadUserProfilePic() {
+            (image) in
+            if image != nil {
+                self.profilePictureView.image = image
+            }
+            else {
+                self.profilePictureView.image = UIImage(named: "defaultUser")
+            }
+        }
+        
         self.view.backgroundColor = UIColor.fromGradientWithDirection(.topToBottom, frame: self.view.frame, colors: [UIColor.gray, UIColor.lightGray, UIColor.white])
         
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
-        // self.loadData()
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UserScreenController.openGalleryClick(tapGesture:)))
+        
+        self.updatePicButton.addGestureRecognizer(tapGestureRecognizer)
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        self.profilePictureView.image = UIImage(named: "defaultUser") // default user picture until download from Firebase finishes
         
         /* Creating a gradient background using UIGradient */
         self.view.backgroundColor = UIColor.fromGradientWithDirection(.topToBottom, frame: self.view.frame, colors: [UIColor.gray, UIColor.lightGray, UIColor.lightGray, UIColor.lightGray, UIColor.lightGray, UIColor.white, UIColor.white])
@@ -170,15 +192,48 @@ class UserScreenController: UIViewController {
         
     }
     
+    @objc func openGalleryClick(tapGesture: UITapGestureRecognizer){
+        self.setupImagePicker()
+    }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+}
+
+/* Holds delegate for UIImagePickerController */
+extension UserScreenController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func setupImagePicker() {
+        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
+            imagePicker.sourceType = .savedPhotosAlbum
+            imagePicker.delegate = self
+            imagePicker.allowsEditing = true
+            
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let image = info[.originalImage] as? UIImage {
+            self.profilePictureView.image = image
+            dismiss(animated: true, completion: nil)
+            
+            self.FirebaseClient?.uploadUserPhotoToStorage(image: image) {
+                (url) in
+                if url != nil {
+                    print("Image uploaded to \(String(describing: url))")
+                }
+                else {
+                    print("Image was not uploaded.")
+                }
+            }
+        }
+        
+        
+    }
+    
     
 }
