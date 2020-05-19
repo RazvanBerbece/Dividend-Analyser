@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import Firebase
+import UIGradient
 
 class SettingsScreenController: UIViewController {
     
@@ -128,6 +129,7 @@ class SettingsScreenController: UIViewController {
     
     override func viewDidLoad() {
         
+        /* Creating a gradient background using UIGradient */
         self.view.backgroundColor = UIColor.fromGradientWithDirection(.topToBottom, frame: self.view.frame, colors: [UIColor.gray, UIColor.lightGray, UIColor.lightGray, UIColor.lightGray, UIColor.lightGray, UIColor.white, UIColor.white])
         
         super.viewDidLoad()
