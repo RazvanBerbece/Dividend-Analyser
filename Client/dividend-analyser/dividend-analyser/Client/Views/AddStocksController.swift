@@ -8,6 +8,8 @@
 
 import UIKit
 import FirebaseAuth
+import UIGradient
+import Kingfisher
 
 class AddStocksController: UIViewController, UITextFieldDelegate {
     
@@ -18,6 +20,7 @@ class AddStocksController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var symbolLabel: UILabel!
     @IBOutlet weak var predictionLabel: UILabel!
     @IBOutlet weak var addStockResultLabel: UILabel!
+    @IBOutlet weak var logoView: UIImageView!
     
     /* User Variables */
     var portofolio : [[String]] = [] // this will be updated and sent
@@ -45,13 +48,15 @@ class AddStocksController: UIViewController, UITextFieldDelegate {
                 (data) in
                 if data.count != 0 {
                     self.symbolLabel.text = data[0].uppercased()
-                    self.valueLabel.text = data[1]
+                    self.valueLabel.text = "$\(data[1]) / \(data[3] == "quarterly" ? "quarter" : "month")"
                     self.methodLabel.text = data[3]
                     
                     self.APIstock = data
                     
                     self.addStockResultLabel.text = "Press the button below to add to your portofolio."
                     self.addStockResultLabel.textColor = UIColor(ciColor: .green)
+                    
+                    self.logoView.kf.setImage(with: URL(string: data[4]))
                 }
                 else {
                     print("No stock found using the given symbol.")
@@ -103,6 +108,7 @@ class AddStocksController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         
+        /* Creating a gradient background using UIGradient */
         self.view.backgroundColor = UIColor.fromGradientWithDirection(.topToBottom, frame: self.view.frame, colors: [UIColor.gray, UIColor.lightGray, UIColor.lightGray, UIColor.lightGray, UIColor.lightGray, UIColor.white, UIColor.white])
         
         super.viewDidLoad()

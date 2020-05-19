@@ -8,6 +8,8 @@
 
 import UIKit
 import Firebase
+import UIGradient
+import Kingfisher
 
 class UserPortofolioController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -58,6 +60,7 @@ class UserPortofolioController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         
+        /* Creating a gradient background using UIGradient */
         self.view.backgroundColor = UIColor.fromGradientWithDirection(.topToBottom, frame: self.view.frame, colors: [UIColor.gray, UIColor.lightGray, UIColor.lightGray, UIColor.lightGray, UIColor.lightGray, UIColor.white, UIColor.white])
         
         /* Setting Delegates & Table View constants */
@@ -109,17 +112,55 @@ class UserPortofolioController: UIViewController, UITableViewDelegate, UITableVi
         button.sizeToFit()
         button.tag = indexPath.row // this keeps track of the row index -> can access model[tag]
         
-        cell.textLabel?.text = model[indexPath.row].getName()
-        cell.detailTextLabel?.text = model[indexPath.row].getDividend()
+        /* Setting the cell with stock data */
+        if self.model.count != 0 && self.model[indexPath.row].getDividend() != "" {
+            
+            cell.textLabel!.text = model[indexPath.row].getName()
+            cell.detailTextLabel!.text = "$\(model[indexPath.row].getDividend()) / \(model[indexPath.row].getRate())"
+            
+            /* Cell Text Font & Size */
+            cell.textLabel!.font = UIFont.systemFont(ofSize: 20)
+            cell.detailTextLabel!.font = UIFont.systemFont(ofSize: 15)
+            
+            /* Text Color for Cell Text*/
+            cell.textLabel!.textColor = UIColor(ciColor: .black)
+            cell.detailTextLabel!.textColor = UIColor(ciColor: .black)
+            
+            /* ! */
+            cell.accessoryView = button
+            
+            /* Stock Logo Methodology using KingFisher */
+            if model[indexPath.row].getLogoURL() != "" {
+                
+                let url = URL(string: "\(model[indexPath.row].getLogoURL())")
+                // Downsampling
+                let processor = DownsamplingImageProcessor(size: CGSize(width: 125, height: 125))
+                cell.imageView!.kf.indicatorType = .activity
+                cell.imageView!.kf.setImage(
+                    with: url,
+                    placeholder: UIImage(named: "defaultStock"),
+                    options: [
+                        .processor(processor),
+                        .scaleFactor(UIScreen.main.scale),
+                        .transition(.fade(1)),
+                        .cacheOriginalImage
+                    ])
+                {
+                    result in
+                    switch result {
+                    case .success(let value):
+                        print("Task done for: \(value.source.url?.absoluteString ?? "")")
+                    case .failure(let error):
+                        print("Job failed: \(error.localizedDescription)")
+                    }
+                }
+            }
+            else {
+                cell.imageView!.image = UIImage(systemName: "defaultStock")
+            }
+        }
         
-        cell.textLabel?.font = UIFont.systemFont(ofSize: 20)
-        cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 15)
-        
-        cell.textLabel?.textColor = UIColor(ciColor: .black)
-        cell.detailTextLabel?.textColor = UIColor(ciColor: .black)
-        
-        cell.accessoryView = button
-        
+        /* Making the cells transparent */
         cell.layer.backgroundColor = UIColor.clear.cgColor
         cell.backgroundColor = .clear
         tableView.layer.backgroundColor = UIColor.clear.cgColor
