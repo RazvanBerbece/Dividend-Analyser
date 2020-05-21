@@ -14,7 +14,8 @@ import Kingfisher
 class AddStocksController: UIViewController, UITextFieldDelegate {
     
     /* IBOutlets and View Variables */
-    @IBOutlet weak var symbolInputLabel: UITextField! // Also used as a warning if no data is found for given stock symbol
+    @IBOutlet weak var symbolInputLabel: UITextField!
+    @IBOutlet weak var numberStocksInput: UITextField!
     @IBOutlet weak var methodLabel: UILabel!
     @IBOutlet weak var valueLabel: UILabel!
     @IBOutlet weak var symbolLabel: UILabel!
@@ -35,16 +36,26 @@ class AddStocksController: UIViewController, UITextFieldDelegate {
     var newClient = Client()
     
     /* IBActions and button functions */
-    @IBAction func searchSymbol() {
+    func searchSymbol(completion: @escaping (Bool) -> (Void)) {
         
-        let symbolInput = self.symbolInputLabel.text // this will be passed to the API
+        let symbolInput = self.symbolInputLabel.text // passed to API
+        let numberStocks = self.numberStocksInput.text
+        
+        var doubleNumberStocks : Double? // passed to API
+        
+        if numberStocks != "" {
+            doubleNumberStocks = Double(numberStocks!)!
+        }
+        else {
+            doubleNumberStocks = 1
+        }
         
         if symbolInput?.count == 0 {
             print("No input. Try searching for a stock symbol.")
         }
         else {
             /* Client Search - Tomi call here */
-            newClient.getDataFrom(symbolInput!) {
+            newClient.getDataFrom(symbolInput!, doubleNumberStocks!) {
                 (data) in
                 if data.count != 0 {
                     self.symbolLabel.text = data[0].uppercased()
@@ -52,17 +63,22 @@ class AddStocksController: UIViewController, UITextFieldDelegate {
                     self.methodLabel.text = data[3]
                     
                     self.APIstock = data
+                    print("GOT FROM API CONTROLLER ----> \(self.APIstock)")
                     
                     self.addStockResultLabel.text = "Press the button below to add to your portofolio."
                     self.addStockResultLabel.textColor = UIColor(ciColor: .green)
                     
-                    self.logoView.kf.setImage(with: URL(string: data[4]))
+                    self.logoView.kf.setImage(with: URL(string: data[5]))
+                    
+                    completion(true)
                 }
                 else {
                     print("No stock found using the given symbol.")
                     
                     self.addStockResultLabel.text = "No stock found using the given symbol. Try again."
                     self.addStockResultLabel.textColor = UIColor(ciColor: .red)
+                    
+                    completion(false)
                 }
             }
         }
@@ -70,26 +86,40 @@ class AddStocksController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func addSymbol() {
+        
         /*
          *  Adds to the current portofolio (session-time) and then sends it to Firebase Database
          */
         
         if self.portofolio[0].count != 0 {
             if self.portofolio[0][0] == "Add Stocks to see them here !" { // if new user, delete the default value from the portofolio
-                self.portofolio = [[]]
+                self.portofolio = []
             }
-            else {
+            
+            var alreadyInPortofolio : Bool = false
+            
+            /* Check if the stock is already in the user's portofolio*/
+            for (index, stock) in portofolio.enumerated() {
+                if stock[0] == self.APIstock[0] {
+                    portofolio[index][4] = "\(Double(Double(portofolio[index][4])! + Double(self.APIstock[4])!))"
+                    portofolio[index][1] = "\(Double(Double(portofolio[index][1])! + Double(self.APIstock[1])!))"
+                    alreadyInPortofolio = true
+                }
+            }
+            
+            if !alreadyInPortofolio {
                 self.portofolio.append([])
+                self.portofolio[self.portofolio.count - 1].append(contentsOf: self.APIstock)
             }
         }
-        
-        // self.APIstock = ["AAPL", "0.77", ...] // test stock transaction
-        self.portofolio[self.portofolio.count - 1].append(contentsOf: self.APIstock)
-        
+        else { // empty portofolio for user
+            self.portofolio.append([])
+            self.portofolio[self.portofolio.count - 1].append(contentsOf: self.APIstock)
+        }
         
         self.firebaseClient = FirebaseClient(user: self.User!)
         
-        self.firebaseClient?.uploadTransactionToUser(transaction: self.portofolio) {
+        self.firebaseClient!.uploadTransactionToUser(transaction: self.portofolio) {
             (result) in
             if result == true {
                 print("Uploaded stock to portofolio !")
@@ -120,6 +150,10 @@ class AddStocksController: UIViewController, UITextFieldDelegate {
         
         view.addGestureRecognizer(tap)
         
+        /* Setting TextField Delegates */
+        self.symbolInputLabel.delegate = self
+        self.numberStocksInput.delegate = self
+        
         self.symbolInputLabel.addTarget(self, action: #selector(AddStocksController.textFieldDidChange(_:)), for: .editingChanged)
     }
     
@@ -136,6 +170,22 @@ class AddStocksController: UIViewController, UITextFieldDelegate {
             DispatchQueue.main.async {
                 self.predictionLabel.text = predicted
             }
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField,
+                                reason: UITextField.DidEndEditingReason) {
+        
+        if reason == .committed {
+            
+            /* Requesting the symbol & Append to list if neccessary */
+            self.searchSymbol() {
+                (result) in
+                if result == true {
+                    print("Search finished successfully.")
+                }
+            }
+            
         }
     }
     

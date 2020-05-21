@@ -16,6 +16,7 @@ public class Portofolio : NSObject {
     private let stockDividend : String?
     private let stockCurrency : String?
     private let stockPayRate : String?
+    private let stockNumber : Double?
     private let stockLogo : String?
     
     init(stockData: [String]) {
@@ -28,36 +29,49 @@ public class Portofolio : NSObject {
             self.stockDividend = ""
             self.stockCurrency = ""
             self.stockPayRate = ""
+            self.stockNumber = 0
             self.stockLogo = ""
         case 2:
             self.stockName = stockData[0]
             self.stockDividend = stockData[1]
             self.stockCurrency = ""
             self.stockPayRate = ""
+            self.stockNumber = 0
             self.stockLogo = ""
         case 3:
             self.stockName = stockData[0]
             self.stockDividend = stockData[1]
             self.stockCurrency = stockData[2]
             self.stockPayRate = ""
+            self.stockNumber = 0
             self.stockLogo = ""
         case 4:
             self.stockName = stockData[0]
             self.stockDividend = stockData[1]
             self.stockCurrency = stockData[2]
             self.stockPayRate = stockData[3]
+            self.stockNumber = 0
             self.stockLogo = ""
         case 5:
             self.stockName = stockData[0]
             self.stockDividend = stockData[1]
             self.stockCurrency = stockData[2]
             self.stockPayRate = stockData[3]
-            self.stockLogo = stockData[4]
+            self.stockNumber = Double(stockData[4])
+            self.stockLogo = ""
+        case 6:
+            self.stockName = stockData[0]
+            self.stockDividend = stockData[1]
+            self.stockCurrency = stockData[2]
+            self.stockPayRate = stockData[3]
+            self.stockNumber = Double(stockData[4])
+            self.stockLogo = stockData[5]
         default:
             self.stockName = ""
             self.stockDividend = ""
             self.stockCurrency = ""
             self.stockPayRate = ""
+            self.stockNumber = 0
             self.stockLogo = ""
             print("No data for portofolio init !")
         }
@@ -83,6 +97,10 @@ public class Portofolio : NSObject {
     
     public func getLogoURL() -> String {
         return self.stockLogo!
+    }
+    
+    public func getNumber() -> Double {
+        return self.stockNumber!
     }
     
 }

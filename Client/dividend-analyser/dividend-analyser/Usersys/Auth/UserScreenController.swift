@@ -66,18 +66,8 @@ class UserScreenController: UIViewController {
         
         self.updatePicButton.addGestureRecognizer(tapGestureRecognizer)
         
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
-        self.profilePictureView.image = UIImage(named: "defaultUser") // default user picture until download from Firebase finishes
-        
-        /* Creating a gradient background using UIGradient */
-        self.view.backgroundColor = UIColor.fromGradientWithDirection(.topToBottom, frame: self.view.frame, colors: [UIColor.gray, UIColor.lightGray, UIColor.lightGray, UIColor.lightGray, UIColor.lightGray, UIColor.white, UIColor.white])
-        
-        super.viewWillAppear(animated)
-        
         self.loadData()
+        
     }
     
     @IBAction func unwind(unwindSegue: UIStoryboardSegue) {
@@ -192,7 +182,7 @@ class UserScreenController: UIViewController {
         
     }
     
-    @objc func openGalleryClick(tapGesture: UITapGestureRecognizer){
+    @objc func openGalleryClick(tapGesture: UITapGestureRecognizer) {
         self.setupImagePicker()
     }
     
