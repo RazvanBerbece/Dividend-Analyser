@@ -115,8 +115,8 @@ class UserPortofolioController: UIViewController, UITableViewDelegate, UITableVi
         /* Setting the cell with stock data */
         if self.model.count != 0 && self.model[indexPath.row].getDividend() != "" {
             
-            cell.textLabel!.text = model[indexPath.row].getName()
-            cell.detailTextLabel!.text = "$\(model[indexPath.row].getDividend()) / \(model[indexPath.row].getRate())"
+            cell.textLabel!.text = "\(model[indexPath.row].getName()) x \(model[indexPath.row].getNumber()) shares"
+            cell.detailTextLabel!.text = "$\(String(format: "%.2f", Double(model[indexPath.row].getDividend())!)) / \(model[indexPath.row].getRate())"
             
             /* Cell Text Font & Size */
             cell.textLabel!.font = UIFont.systemFont(ofSize: 20)

@@ -38,10 +38,28 @@ public class SymbolHelper {
         
         let uppercasedCurrent = current.uppercased()
         
+        var similarSymbols : [String] = []
+        
+        /* Gathering all possible matches */
         for symbol in csvNamedColumns["Symbol"]! {
-            if symbol.contains(uppercasedCurrent) || symbol == uppercasedCurrent {
-                completion(symbol) // Completion handler with whatever closest prediction string is on
+            if symbol.contains(uppercasedCurrent) {
+                similarSymbols.append(symbol)
             }
+        }
+        
+        /* Checking if there is an exact match */
+        for symbol in similarSymbols {
+            if symbol == uppercasedCurrent {
+                completion(uppercasedCurrent)
+            }
+        }
+        
+        /* If not, and if there are any matches, handle the first record */
+        if similarSymbols.count != 0 {
+            completion(similarSymbols[0])
+        }
+        else {
+            completion("...")
         }
         
     }

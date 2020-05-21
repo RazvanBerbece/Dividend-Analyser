@@ -8,7 +8,7 @@ class Client {
         this.key = "pk_c97e6a5a4ae0452c8a10f1f161b41434";
     }
 
-    FinancialData(symbol, callback) { // getting data from IEX Cloud and returning it as a list of values
+    FinancialData(symbol, numberStocks, callback) { // getting data from IEX Cloud and returning it as a list of values
 
       /* IEX Cloud Batch Call for Dividends and Logo */
       const finalLinkData = this.base_link + "/stock/" + "market/" + "batch?&types=dividends,logo&symbols=" + symbol + "&range=1y&token=" + this.key;
@@ -17,7 +17,7 @@ class Client {
         url: finalLinkData,
         method: "get"
       };
-
+      
       /* Request for core data : stock name, stock dividend, etc */
       request(optionsCore, (error, response, body) => {
 
@@ -37,9 +37,10 @@ class Client {
           var financialArray = []; // contains all relevant values selected above
 
           financialArray.push(symbol);
-          financialArray.push(dividendValue);
+          financialArray.push(dividendValue * parseFloat(numberStocks));
           financialArray.push(cashValue);
           financialArray.push(frequencyValue);
+          financialArray.push(parseFloat(numberStocks));
           financialArray.push(logoURL);
 
           return callback(financialArray, false);
