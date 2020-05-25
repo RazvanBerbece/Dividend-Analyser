@@ -9,7 +9,6 @@
 import UIKit
 import FirebaseAuth
 import Firebase
-import UIGradient
 
 class SettingsScreenController: UIViewController {
     
@@ -129,9 +128,6 @@ class SettingsScreenController: UIViewController {
     
     override func viewDidLoad() {
         
-        /* Creating a gradient background using UIGradient */
-        self.view.backgroundColor = UIColor.fromGradientWithDirection(.topToBottom, frame: self.view.frame, colors: [UIColor.gray, UIColor.lightGray, UIColor.lightGray, UIColor.lightGray, UIColor.lightGray, UIColor.white, UIColor.white])
-        
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
@@ -152,16 +148,5 @@ class SettingsScreenController: UIViewController {
     @IBAction func unwind(unwindSegue: UIStoryboardSegue) {
         /* This can be empty, presence required */
     }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }
