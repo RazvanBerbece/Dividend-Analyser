@@ -1,5 +1,6 @@
 /* -------------- Requires & Port init -------------- */
 
+require('dotenv').config();
 const express = require('express');
 
 const app = express();
@@ -14,7 +15,7 @@ const Client = require('./classes/client.js');
 var firebase = require('firebase');
 
 const config = {
-  apiKey: "AIzaSyAShp8YZ1L7OjWWUD7-QagRyJLjJAH2FfM",
+  apiKey: process.env.FB_KEY,
   authDomain: "dividend-analyser.firebaseapp.com",
   databaseURL: "https://dividend-analyser.firebaseio.com",
   projectId: "dividend-analyser",
