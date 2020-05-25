@@ -62,11 +62,11 @@ class AddStocksController: UIViewController, UITextFieldDelegate {
                     self.methodLabel.text = data[3]
                     
                     self.APIstock = data
-                    print("GOT FROM API CONTROLLER ----> \(self.APIstock)")
                     
                     self.addStockResultLabel.text = "Press the button below to add to your portofolio."
                     self.addStockResultLabel.textColor = UIColor(ciColor: .green)
                     
+                    self.logoView.layer.cornerRadius = 42
                     self.logoView.kf.setImage(with: URL(string: data[5]))
                     
                     completion(true)
@@ -139,9 +139,7 @@ class AddStocksController: UIViewController, UITextFieldDelegate {
         
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
-        
-        // Looks for single or multiple taps.
+        /* Looks for single or multiple taps */
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         
         view.addGestureRecognizer(tap)
@@ -153,13 +151,13 @@ class AddStocksController: UIViewController, UITextFieldDelegate {
         self.symbolInputLabel.addTarget(self, action: #selector(AddStocksController.textFieldDidChange(_:)), for: .editingChanged)
     }
     
-    // Calls this function when the tap is recognized.
+    /* Calls this function when the tap is recognized */
     @objc func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
     
-    // Calls this function to predict symbol input
+    /* Calls this function to predict symbol input */
     @objc func textFieldDidChange(_ textField: UITextField) {
         self.predictor.getClosestStrings(current: textField.text!) { // We change the value of the predictedLabel with whatever result we get from the SymbolHelper method
             (predicted) in
@@ -186,17 +184,7 @@ class AddStocksController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func unwind(unwindSegue: UIStoryboardSegue) {
-        /* This can be empty, presence required */
+        /* This can be empty, presence required for unwinding */
     }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }

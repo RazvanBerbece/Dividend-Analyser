@@ -54,7 +54,7 @@ class UserScreenController: UIViewController {
     override func viewDidLoad() {
         
         /* Making the profile picture view look like a circle & Other edits */
-        self.profilePictureView.makeRoundCorners(byRadius: 100)
+        self.profilePictureView.layer.cornerRadius = 100
         self.profilePictureView.contentMode = .scaleAspectFit
         
         /* Load profile picture or use placeholder */
