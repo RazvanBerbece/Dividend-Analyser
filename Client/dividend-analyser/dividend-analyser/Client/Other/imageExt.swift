@@ -5,6 +5,7 @@
 //  Created by Razvan-Antonio Berbece on 19/05/2020.
 //  Copyright © 2020 Razvan-Antonio Berbece. All rights reserved.
 //
+//  SOURCE : https://gist.github.com/schickling/b5d86cb070130f80bb40
 
 import Foundation
 import UIKit
@@ -12,6 +13,7 @@ import UIKit
 /* Extension to UIImage to prevent flipped images when uploading or downloading images to/from Firebase */
 extension UIImage {
     
+    /// Fix image orientaton to protrait up
     func fixedOrientation() -> UIImage? {
         guard imageOrientation != UIImage.Orientation.up else {
             // This is default orientation, don't need to do anything
@@ -71,12 +73,5 @@ extension UIImage {
         
         guard let newCGImage = ctx.makeImage() else { return nil }
         return UIImage.init(cgImage: newCGImage, scale: 1, orientation: .up)
-    }
-}
-
-extension UIImageView {
-    func makeRoundCorners(byRadius rad: CGFloat) {
-        self.layer.cornerRadius = rad
-        self.clipsToBounds = true
     }
 }

@@ -183,7 +183,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func unwind(unwindSegue: UIStoryboardSegue) {
-        /* This can be empty, presence required */
+        /* This can be empty, presence required for unwinding */
     }
     
 }

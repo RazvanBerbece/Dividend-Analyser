@@ -104,7 +104,7 @@ class UserPortofolioController: UIViewController, UITableViewDelegate, UITableVi
         
         /* Creating the UIButton for the accessory type of the cell */
         let button = UIButton(type: .custom)
-        button.setImage(UIImage(systemName: "xmark")!.withTintColor(UIColor(ciColor: .blue)), for: .normal)
+        button.setImage(UIImage(systemName: "xmark")!.withTintColor(UIColor(ciColor: .green)), for: .normal)
         button.addTarget(self, action: #selector(tableViewDelete), for: .touchUpInside)
         button.sizeToFit()
         button.tag = indexPath.row // this keeps track of the row index -> can access model[tag]
@@ -124,12 +124,16 @@ class UserPortofolioController: UIViewController, UITableViewDelegate, UITableVi
              */
             cell.accessoryView = button
             
+            /* Making the Stock Logos rounded */
+            cell.imageView!.layer.masksToBounds = true
+            cell.imageView!.layer.cornerRadius = 20
+            
             /* Stock Logo Methodology using KingFisher */
             if model[indexPath.row].getLogoURL() != "" {
                 
                 let url = URL(string: "\(model[indexPath.row].getLogoURL())")
                 // Downsampling
-                let processor = DownsamplingImageProcessor(size: CGSize(width: 65, height: 65))
+                let processor = DownsamplingImageProcessor(size: CGSize(width: 45, height: 45))
                 cell.imageView!.kf.indicatorType = .activity
                 cell.imageView!.kf.setImage(
                     with: url,
