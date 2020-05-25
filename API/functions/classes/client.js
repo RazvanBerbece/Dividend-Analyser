@@ -1,3 +1,4 @@
+require('dotenv').config();
 var request = require('request');
 
 /* Acts as client for the API, getting data from IEX Cloud through a HTTP request */
@@ -5,7 +6,7 @@ class Client {
 
     constructor() {
         this.base_link = "https://cloud.iexapis.com/stable";
-        this.key = "pk_c97e6a5a4ae0452c8a10f1f161b41434";
+        this.key = process.env.IEX_KEY;
     }
 
     FinancialData(symbol, numberStocks, callback) { // getting data from IEX Cloud and returning it as a list of values
