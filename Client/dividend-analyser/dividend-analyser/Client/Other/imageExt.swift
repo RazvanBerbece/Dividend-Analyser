@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-/* Extension to UIImage to prevent flipped images when uploading or downloading images */
+/* Extension to UIImage to prevent flipped images when uploading or downloading images to/from Firebase */
 extension UIImage {
     
     func fixedOrientation() -> UIImage? {

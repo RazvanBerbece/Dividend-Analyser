@@ -8,7 +8,6 @@
 
 import UIKit
 import FirebaseAuth
-import UIGradient
 
 class ViewController: UIViewController {
     
@@ -16,6 +15,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var emailInput: UITextField!
     @IBOutlet weak var passInput: UITextField!
     @IBOutlet weak var signupResultLabel: UILabel!
+    @IBOutlet weak var signUpButton: UIButton!
+    var needsToSignUp : Bool?
     
     /* Managers */
     var firebaseClient : FirebaseClient?
@@ -26,8 +27,8 @@ class ViewController: UIViewController {
     /* User State to be sent through segue */
     var authResult : AuthDataResult?
     
-    /* Button Action Functions */
-    @IBAction func signUp(sender: UIButton) {
+    /* Button Action Functions as objc so they can be dynamically called in relation to needsToSignUp */
+    @objc func signUp() {
         
         /* Getting Text Field values */
         let email = self.emailInput.text
@@ -65,6 +66,9 @@ class ViewController: UIViewController {
                             }
                         }
                     }
+                    
+                    /* Segue-ing to user screen */
+                    self.performSegue(withIdentifier: "moveToUserScreen", sender: self)
                 }
                 else { // An error occured during sign-up
                     print("error = \(error!)")
@@ -83,7 +87,7 @@ class ViewController: UIViewController {
         
     }
     
-    @IBAction func signIn() {
+    @objc func signIn() {
         
         /* Getting Text Field values */
         let email = self.emailInput.text
@@ -145,18 +149,28 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         
-        /* Creating a gradient background using UIGradient */
-        self.view.backgroundColor = UIColor.fromGradientWithDirection(.topToBottom, frame: self.view.frame, colors: [UIColor.gray, UIColor.lightGray, UIColor.lightGray, UIColor.lightGray, UIColor.lightGray, UIColor.white, UIColor.white])
-        
-        /* Handler for Firebase functionality */
-        self.handle = Auth.auth().addStateDidChangeListener { (auth, user) in
-            // User data can be handled here
+        /* Setting the button action according to user's choice of either creating an account or connecting to one */
+        if self.needsToSignUp == true { // user needs to create an account
+            self.signUpButton.setTitle("Sign Up", for: .normal)
+            
+            /* Creating the tap gesture for the sign-up button */
+            let signUpGR = UITapGestureRecognizer(target: self, action: #selector(ViewController.signUp))
+            self.signUpButton.addGestureRecognizer(signUpGR)
+        }
+        else { // user needs to login
+            self.signUpButton.setTitle("Login", for: .normal)
+            
+            /* Creating the tap gesture for the login button */
+            let signUpGR = UITapGestureRecognizer(target: self, action: #selector(ViewController.signIn))
+            self.signUpButton.addGestureRecognizer(signUpGR)
         }
         
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        /* View Settings */
+        self.signUpButton.layer.cornerRadius = 8.5
         
-        //Looks for single or multiple taps.
+        super.viewDidLoad()
+        
+        /* Looks for single or multiple taps in order to dismiss the keyboard */
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         
         view.addGestureRecognizer(tap)
@@ -166,12 +180,6 @@ class ViewController: UIViewController {
     @objc func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        /* Removing the Firebase handler */
-        Auth.auth().removeStateDidChangeListener(handle!)
     }
     
     @IBAction func unwind(unwindSegue: UIStoryboardSegue) {

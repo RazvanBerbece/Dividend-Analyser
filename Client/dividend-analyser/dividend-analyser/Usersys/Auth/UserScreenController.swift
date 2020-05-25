@@ -9,7 +9,6 @@
 import UIKit
 import FirebaseAuth
 import Firebase
-import UIGradient
 import Kingfisher
 
 class UserScreenController: UIViewController {
@@ -19,6 +18,7 @@ class UserScreenController: UIViewController {
     @IBOutlet weak var amountLabel: UILabel!
     @IBOutlet weak var profilePictureView: UIImageView!
     @IBOutlet weak var updatePicButton: UIButton!
+    @IBOutlet weak var settingsButton: UIButton!
     var imagePicker = UIImagePickerController()
     
     /* User Data Variables */
@@ -36,9 +36,19 @@ class UserScreenController: UIViewController {
         print("Trying to sign out ...")
     }
     
+    /* Moving to SettingsScreen */
     @IBAction func settings() {
-        /* Moving to SettingsScreen */
         self.performSegue(withIdentifier: "moveToSettings", sender: self)
+    }
+    
+    /* Moving to User Portofolio */
+    @IBAction func goToPortofolio() {
+        self.performSegue(withIdentifier: "moveToPortofolio", sender: self)
+    }
+    
+    /* Moving to Add Stocks Screen */
+    @IBAction func goToAddStocks() {
+        self.performSegue(withIdentifier: "moveToAddStocks", sender: self)
     }
     
     override func viewDidLoad() {
@@ -57,8 +67,6 @@ class UserScreenController: UIViewController {
                 self.profilePictureView.image = UIImage(named: "defaultUser")
             }
         }
-        
-        self.view.backgroundColor = UIColor.fromGradientWithDirection(.topToBottom, frame: self.view.frame, colors: [UIColor.gray, UIColor.lightGray, UIColor.white])
         
         super.viewDidLoad()
         

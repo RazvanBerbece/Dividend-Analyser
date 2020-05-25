@@ -8,7 +8,6 @@
 
 import UIKit
 import Firebase
-import UIGradient
 import Kingfisher
 
 class UserPortofolioController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -36,6 +35,10 @@ class UserPortofolioController: UIViewController, UITableViewDelegate, UITableVi
             }
         }
         
+        if portofolioDataFromFirebase?.count == 0 {
+            portofolioDataFromFirebase = [["Add Stocks to see them here !"]]
+        }
+        
         /* Uploading the updated portofolio to Firebase Database */
         self.firebaseClient.uploadTransactionToUser(transaction: portofolioDataFromFirebase!) {
             (result) in
@@ -60,9 +63,6 @@ class UserPortofolioController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         
-        /* Creating a gradient background using UIGradient */
-        self.view.backgroundColor = UIColor.fromGradientWithDirection(.topToBottom, frame: self.view.frame, colors: [UIColor.gray, UIColor.lightGray, UIColor.lightGray, UIColor.lightGray, UIColor.lightGray, UIColor.white, UIColor.white])
-        
         /* Setting Delegates & Table View constants */
         self.portofolioTableView.delegate = self
         self.portofolioTableView.dataSource = self
@@ -70,15 +70,12 @@ class UserPortofolioController: UIViewController, UITableViewDelegate, UITableVi
         
         super.viewDidLoad()
         
-        /* Loop through received stocks and add them to the model if there is any stock found */
-        if portofolioDataFromFirebase!.count == 0 {
-            print("No symbols found in user's portofolio (downloaded from Firebase).")
-        }
-        else {
-            for stock in portofolioDataFromFirebase! {
-                let portofolioForStock = Portofolio(stockData: stock)
-                model.append(portofolioForStock)
-            }
+        /* Loop through received stocks and add them to the model if there is any stock found
+         * Can be iterated without any exception, as the portofolio always has one element in it (default value)
+         */
+        for stock in portofolioDataFromFirebase! {
+            let portofolioForStock = Portofolio(stockData: stock)
+            model.append(portofolioForStock)
         }
         
     }
@@ -122,11 +119,9 @@ class UserPortofolioController: UIViewController, UITableViewDelegate, UITableVi
             cell.textLabel!.font = UIFont.systemFont(ofSize: 20)
             cell.detailTextLabel!.font = UIFont.systemFont(ofSize: 15)
             
-            /* Text Color for Cell Text*/
-            cell.textLabel!.textColor = UIColor(ciColor: .black)
-            cell.detailTextLabel!.textColor = UIColor(ciColor: .black)
-            
-            /* ! */
+            /*  Setting the accessory view of the cell to the button
+             *  which deletes records from the portofolio
+             */
             cell.accessoryView = button
             
             /* Stock Logo Methodology using KingFisher */

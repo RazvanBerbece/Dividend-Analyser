@@ -11,7 +11,6 @@ target 'dividend-analyser' do
   pod 'SwiftyJSON', '~> 4.0'
   pod 'Alamofire', '~> 5.1'
   pod "SwiftCSV"
-  pod 'UIGradient'
   pod 'Kingfisher', '~> 5.0'
   pod 'Firebase/Storage'
 
