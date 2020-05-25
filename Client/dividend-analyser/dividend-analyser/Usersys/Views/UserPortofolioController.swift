@@ -67,6 +67,8 @@ class UserPortofolioController: UIViewController, UITableViewDelegate, UITableVi
         self.portofolioTableView.delegate = self
         self.portofolioTableView.dataSource = self
         self.portofolioTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        self.portofolioTableView.layer.backgroundColor = UIColor.clear.cgColor
+        self.portofolioTableView.backgroundColor = .clear
         
         super.viewDidLoad()
         
@@ -104,7 +106,8 @@ class UserPortofolioController: UIViewController, UITableViewDelegate, UITableVi
         
         /* Creating the UIButton for the accessory type of the cell */
         let button = UIButton(type: .custom)
-        button.setImage(UIImage(systemName: "xmark")!.withTintColor(UIColor(ciColor: .green)), for: .normal)
+        button.setImage(UIImage(systemName: "xmark")!, for: .normal)
+        button.tintColor = UIColor(ciColor: .green)
         button.addTarget(self, action: #selector(tableViewDelete), for: .touchUpInside)
         button.sizeToFit()
         button.tag = indexPath.row // this keeps track of the row index -> can access model[tag]
@@ -162,8 +165,6 @@ class UserPortofolioController: UIViewController, UITableViewDelegate, UITableVi
         /* Making the cells transparent */
         cell.layer.backgroundColor = UIColor.clear.cgColor
         cell.backgroundColor = .clear
-        tableView.layer.backgroundColor = UIColor.clear.cgColor
-        tableView.backgroundColor = .clear
         
         return cell;
     }
