@@ -125,6 +125,9 @@ class AddStocksController: UIViewController, UITextFieldDelegate {
                 
                 self.addStockResultLabel.text = "Successfully added stock to portofolio."
                 self.addStockResultLabel.textColor = UIColor(ciColor: .green)
+                
+                /* As per the feedback I have received, I have decided to move the view to the Portofolio after adding shares */
+                self.performSegue(withIdentifier: "moveToPortofolio", sender: self)
             }
             else {
                 print("Failed to upload stock to portofolio.")
@@ -185,6 +188,16 @@ class AddStocksController: UIViewController, UITextFieldDelegate {
     
     @IBAction func unwind(unwindSegue: UIStoryboardSegue) {
         /* This can be empty, presence required for unwinding */
+    }
+    
+    /* Segue Performing Methodology */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "moveToPortofolio" {
+            let portofolioVC = segue.destination as! UserPortofolioController
+            if Auth.auth().currentUser != nil {
+                portofolioVC.portofolioDataFromFirebase = self.portofolio
+            }
+        }
     }
     
 }
