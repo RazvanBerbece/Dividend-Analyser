@@ -11,6 +11,8 @@
 		6F12C3A2246DA57B00806D6E /* Portofolio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F12C3A1246DA57B00806D6E /* Portofolio.swift */; };
 		6F12C3A3246DA57B00806D6E /* Portofolio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F12C3A1246DA57B00806D6E /* Portofolio.swift */; };
 		6F12C3A4246DA57B00806D6E /* Portofolio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F12C3A1246DA57B00806D6E /* Portofolio.swift */; };
+		6F16226D247EECD700656FCB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F8E6B982468798600FF7695 /* Main.storyboard */; };
+		6F16226E247EECD700656FCB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F8E6B982468798600FF7695 /* Main.storyboard */; };
 		6F2B3612247C1AC9003FE4EE /* RootInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2B3611247C1AC9003FE4EE /* RootInfoController.swift */; };
 		6F2B3613247C1AC9003FE4EE /* RootInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2B3611247C1AC9003FE4EE /* RootInfoController.swift */; };
 		6F2B3614247C1AC9003FE4EE /* RootInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F2B3611247C1AC9003FE4EE /* RootInfoController.swift */; };
@@ -413,6 +415,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F16226D247EECD700656FCB /* Main.storyboard in Resources */,
 				6FECC4B324718385009FF347 /* companylist.csv in Resources */,
 				6F30ED552468948600173F12 /* GoogleService-Info.plist in Resources */,
 			);
@@ -422,6 +425,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F16226E247EECD700656FCB /* Main.storyboard in Resources */,
 				6FECC4B424718385009FF347 /* companylist.csv in Resources */,
 				6F30ED562468948600173F12 /* GoogleService-Info.plist in Resources */,
 			);

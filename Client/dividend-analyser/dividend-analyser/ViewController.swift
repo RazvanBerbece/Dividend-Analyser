@@ -8,6 +8,8 @@
 
 import UIKit
 import FirebaseAuth
+import LocalAuthentication
+import SwiftKeychainWrapper
 
 class ViewController: UIViewController {
     
@@ -20,12 +22,7 @@ class ViewController: UIViewController {
     
     /* Managers */
     var firebaseClient : FirebaseClient?
-    
-    /* Initialising the State Handler */
-    var handle : AuthStateDidChangeListenerHandle?
-    
-    /* User State to be sent through segue */
-    var authResult : AuthDataResult?
+    let context = LAContext() // used for Keychain access & processing
     
     /* Button Action Functions as objc so they can be dynamically called in relation to needsToSignUp */
     @objc func signUp() {
@@ -63,6 +60,16 @@ class ViewController: UIViewController {
                                 else {
                                     print("Default portofolio not initialised.")
                                 }
+                            }
+                            
+                            /* Saving credentials to Keychain on sign-up */
+                            let saveUserToKeychain : Bool = KeychainWrapper.standard.set(email!, forKey: "kcEmailDA")
+                            let savePassToKeychain : Bool = KeychainWrapper.standard.set(pass!, forKey: "kcPassDA")
+                            if saveUserToKeychain && savePassToKeychain {
+                                print("Credentials successfully saved to Keychain.")
+                            }
+                            else {
+                                print("An error occured while saving to Keychain.")
                             }
                         }
                     }
@@ -106,11 +113,20 @@ class ViewController: UIViewController {
                 if error == nil {
                     /* User successfully logged in, sending view to UserScreen */
                     print("Successfully logged in user : \(String(describing: authResult?.user.email))")
-                    self?.authResult = authResult
                     
                     DispatchQueue.main.async {
                         self?.emailInput.text = ""
                         self?.passInput.text = ""
+                    }
+                    
+                    /* Updating Keychain with the latest login data */
+                    let saveUserToKeychain : Bool = KeychainWrapper.standard.set(email!, forKey: "kcEmailDA")
+                    let savePassToKeychain : Bool = KeychainWrapper.standard.set(pass!, forKey: "kcPassDA")
+                    if saveUserToKeychain && savePassToKeychain {
+                        print("Credentials successfully updated in Keychain.")
+                    }
+                    else {
+                        print("An error occured while updating Keychain.")
                     }
                     
                     /* Moving to UserScreen */
@@ -140,8 +156,6 @@ class ViewController: UIViewController {
             let userVC = segue.destination as! UserScreenController
             if let currentUser = Auth.auth().currentUser { // The user is logged in on the current session
                 userVC.User = currentUser
-                userVC.authResult = self.authResult!
-                userVC.handle = self.handle
                 userVC.FirebaseClient = FirebaseClient(user: Auth.auth().currentUser!)
             }
         }
@@ -163,6 +177,23 @@ class ViewController: UIViewController {
             /* Creating the tap gesture for the login button */
             let signUpGR = UITapGestureRecognizer(target: self, action: #selector(ViewController.signIn))
             self.signUpButton.addGestureRecognizer(signUpGR)
+            
+            /* Keychain Methodology */
+            var kcError: NSError?
+            self.context.localizedCancelTitle = "Enter Username/Password"
+            if self.context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &kcError) {
+                context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: "Log in to your account") {
+                    (success, error) in
+                    if success {
+                        DispatchQueue.main.async {
+                            self.emailInput.text = KeychainWrapper.standard.string(forKey: "kcEmailDA")
+                            self.passInput.text = KeychainWrapper.standard.string(forKey: "kcPassDA")
+                            
+                            self.signIn()
+                        }
+                    }
+                }
+            }
         }
         
         /* View Settings */
@@ -171,7 +202,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         /* Looks for single or multiple taps in order to dismiss the keyboard */
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         
         view.addGestureRecognizer(tap)
     }

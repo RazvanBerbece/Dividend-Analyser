@@ -20,15 +20,12 @@ class SettingsScreenController: UIViewController {
     
     /* View Side Variables */
     var User : User?
-    var authData: AuthDataResult?
-    var handle: AuthStateDidChangeListenerHandle?
     
     /* IBActions and buttons events */
     @IBAction func submitChanges() {
         
         /* Variables which define what changes we have to submit to Firebase */
         var usernameUpdate = false, emailUpdate = false, passUpdate = false
-        var madeChanges = false
         
         /* The values which have to be submitted to Firebase */
         var username : String?
@@ -59,7 +56,7 @@ class SettingsScreenController: UIViewController {
                 (error) in
                 if error == nil {
                     print("Username changed successfully.")
-                    madeChanges = true
+
                     /* UI Updates */
                     self.changesResultLabel.text = "Username changed successfully."
                     self.changesResultLabel.textColor = UIColor(ciColor: .green)
@@ -79,13 +76,14 @@ class SettingsScreenController: UIViewController {
                 (error) in
                 if error == nil {
                     print("Email changed successfully.")
-                    madeChanges = true
+
                     /* UI Updates */
                     self.changesResultLabel.text = "Email changed successfully."
                     self.changesResultLabel.textColor = UIColor(ciColor: .green)
                 }
                 else {
                     print("error = \(String(describing: error))")
+                    
                     /* UI Updates */
                     self.changesResultLabel.text = "An error occured"
                     self.changesResultLabel.textColor = UIColor(ciColor: .red)
@@ -99,7 +97,6 @@ class SettingsScreenController: UIViewController {
                 (error) in
                 if error == nil {
                     print("Password changed successfully.")
-                    madeChanges = true
                     
                     self.changesResultLabel.text = "Password changed successfully."
                     self.changesResultLabel.textColor = UIColor(ciColor: .green)
@@ -112,18 +109,6 @@ class SettingsScreenController: UIViewController {
                 }
             }
         }
-        
-        /*
-         if madeChanges {
-         self.changesResultLabel.text = "Changes submitted successfully."
-         self.changesResultLabel.textColor = UIColor(ciColor: .green)
-         }
-         else {
-         self.changesResultLabel.text = "No changes submitted."
-         self.changesResultLabel.textColor = UIColor(ciColor: .red)
-         }
-         */
-        
     }
     
     override func viewDidLoad() {
@@ -133,7 +118,7 @@ class SettingsScreenController: UIViewController {
         // Do any additional setup after loading the view.
         
         //Looks for single or multiple taps.
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         
         view.addGestureRecognizer(tap)
     }

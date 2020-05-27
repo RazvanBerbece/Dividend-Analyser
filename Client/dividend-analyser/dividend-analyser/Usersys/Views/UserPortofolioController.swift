@@ -107,7 +107,7 @@ class UserPortofolioController: UIViewController, UITableViewDelegate, UITableVi
         /* Creating the UIButton for the accessory type of the cell */
         let button = UIButton(type: .custom)
         button.setImage(UIImage(systemName: "xmark")!, for: .normal)
-        button.tintColor = UIColor(ciColor: .green)
+        button.tintColor = UIColor.init(red: 63.0/255.0, green: 129.0/255.0, blue: 99.0/255.0, alpha: 1.0)
         button.addTarget(self, action: #selector(tableViewDelete), for: .touchUpInside)
         button.sizeToFit()
         button.tag = indexPath.row // this keeps track of the row index -> can access model[tag]
