@@ -21,6 +21,8 @@ class AddStocksController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var predictionLabel: UILabel!
     @IBOutlet weak var addStockResultLabel: UILabel!
     @IBOutlet weak var logoView: UIImageView!
+    @IBOutlet weak var downloadIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var downloadActivityLabel: UILabel!
     
     /* User Variables */
     var portofolio : [[String]] = [] // this will be updated and sent
@@ -53,6 +55,13 @@ class AddStocksController: UIViewController, UITextFieldDelegate {
             print("No input. Try searching for a stock symbol.")
         }
         else {
+            /* Displaying Activity Indicators & Starting Animation */
+            DispatchQueue.main.async {
+                self.downloadActivityLabel.isHidden = false
+                self.downloadIndicator.isHidden = false
+                self.downloadIndicator.startAnimating()
+            }
+            
             /* Client Search - Tomi call here */
             newClient.getDataFrom(symbolInput!, doubleNumberStocks!) {
                 (data) in
@@ -69,6 +78,11 @@ class AddStocksController: UIViewController, UITextFieldDelegate {
                     self.logoView.layer.cornerRadius = 42
                     self.logoView.kf.setImage(with: URL(string: data[5]))
                     
+                    /* Hiding Activity Indicators & Stopping Animation */
+                    self.downloadActivityLabel.isHidden = true
+                    self.downloadIndicator.isHidden = true
+                    self.downloadIndicator.stopAnimating()
+                    
                     completion(true)
                 }
                 else {
@@ -76,6 +90,11 @@ class AddStocksController: UIViewController, UITextFieldDelegate {
                     
                     self.addStockResultLabel.text = "No stock found using the given symbol. Try again."
                     self.addStockResultLabel.textColor = UIColor(ciColor: .red)
+                    
+                    /* Hiding Activity Indicators & Stopping Animation */
+                    self.downloadActivityLabel.isHidden = true
+                    self.downloadIndicator.isHidden = true
+                    self.downloadIndicator.stopAnimating()
                     
                     completion(false)
                 }
@@ -139,6 +158,10 @@ class AddStocksController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewDidLoad() {
+        
+        /* Hiding Activity Indicators and Labels */
+        self.downloadActivityLabel.isHidden = true
+        self.downloadIndicator.isHidden = true
         
         super.viewDidLoad()
         
