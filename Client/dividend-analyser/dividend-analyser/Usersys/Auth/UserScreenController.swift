@@ -23,8 +23,6 @@ class UserScreenController: UIViewController {
     
     /* User Data Variables */
     var User : User?
-    var authResult : AuthDataResult?
-    var handle : AuthStateDidChangeListenerHandle?
     var transactions : [[String]] = []
     
     /* User Data Manager */
@@ -123,8 +121,6 @@ class UserScreenController: UIViewController {
             let settingsVC = segue.destination as! SettingsScreenController
             if let currentUser = Auth.auth().currentUser { // The user is logged in on the current session
                 settingsVC.User = currentUser
-                settingsVC.authData = self.authResult!
-                settingsVC.handle = self.handle!
             }
         }
         else if segue.identifier == "moveToPortofolio" {
