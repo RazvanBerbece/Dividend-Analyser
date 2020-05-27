@@ -95,6 +95,7 @@ public class FirebaseClient {
         
     }
     
+    /* Downloads the user's profile pic from Firebase Storage */
     public func downloadUserProfilePic(completion: @escaping (UIImage?) -> (Void)) {
         
         let userProfilePicRef = Storage.storage().reference().child("profilePics").child("\(String(describing: self.User!.uid))").child("profilePic.png")

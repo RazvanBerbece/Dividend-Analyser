@@ -13,6 +13,7 @@ target 'dividend-analyser' do
   pod "SwiftCSV"
   pod 'Kingfisher', '~> 5.0'
   pod 'Firebase/Storage'
+  pod 'SwiftKeychainWrapper'
 
   target 'dividend-analyserTests' do
     inherit! :search_paths
