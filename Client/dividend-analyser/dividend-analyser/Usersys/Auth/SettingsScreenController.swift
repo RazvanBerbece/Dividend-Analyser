@@ -56,7 +56,7 @@ class SettingsScreenController: UIViewController {
                 (error) in
                 if error == nil {
                     print("Username changed successfully.")
-
+                    
                     /* UI Updates */
                     self.changesResultLabel.text = "Username changed successfully."
                     self.changesResultLabel.textColor = UIColor(ciColor: .green)
@@ -76,7 +76,7 @@ class SettingsScreenController: UIViewController {
                 (error) in
                 if error == nil {
                     print("Email changed successfully.")
-
+                    
                     /* UI Updates */
                     self.changesResultLabel.text = "Email changed successfully."
                     self.changesResultLabel.textColor = UIColor(ciColor: .green)
