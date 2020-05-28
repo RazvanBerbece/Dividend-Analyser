@@ -20,6 +20,9 @@ class UserScreenController: UIViewController {
     @IBOutlet weak var updatePicButton: UIButton!
     @IBOutlet weak var settingsButton: UIButton!
     var imagePicker = UIImagePickerController()
+    @IBOutlet weak var userPicActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var userPicIndicatorLabel: UILabel!
+    @IBOutlet weak var uploadPicActivityIndicator: UIActivityIndicatorView!
     
     /* User Data Variables */
     var User : User?
@@ -30,7 +33,6 @@ class UserScreenController: UIViewController {
     
     /* IBActions and button functions */
     @IBAction func signOut() {
-        /* TODO ? */
         print("Trying to sign out ...")
     }
     
@@ -51,18 +53,31 @@ class UserScreenController: UIViewController {
     
     override func viewDidLoad() {
         
-        /* Making the profile picture view look like a circle & Other edits */
-        self.profilePictureView.layer.cornerRadius = 100
-        self.profilePictureView.contentMode = .scaleAspectFit
+        /* View Inits */
+        self.uploadPicActivityIndicator.isHidden = true
         
-        /* Load profile picture or use placeholder */
+        /* Making the profile picture view look like a circle & Other edits */
+        self.profilePictureView.layer.cornerRadius = self.profilePictureView.frame.width / 2
+        self.profilePictureView.contentMode = .scaleAspectFill
+        self.profilePictureView.clipsToBounds = true
+        
+        /* Load profile picture or use placeholder & start animation for activity indicator */
+        self.userPicActivityIndicator.startAnimating()
         self.FirebaseClient?.downloadUserProfilePic() {
             (image) in
             if image != nil {
                 self.profilePictureView.image = image
+                
+                /* Stopping indicator */
+                self.userPicActivityIndicator.stopAnimating()
+                self.userPicIndicatorLabel.isHidden = true
             }
             else {
                 self.profilePictureView.image = UIImage(named: "defaultUser")
+                
+                /* Stopping indicator */
+                self.userPicActivityIndicator.stopAnimating()
+                self.userPicIndicatorLabel.isHidden = true
             }
         }
         
@@ -109,7 +124,7 @@ class UserScreenController: UIViewController {
             self.transactions = portofolioSourceController.portofolioDataFromFirebase!
             self.loadData() // load data as there could be an update made in the Portofolio screen
         }
-        else if let settingsSourceController = unwindSegue.source as? SettingsScreenController {
+        else if unwindSegue.source is SettingsScreenController {
             self.loadData() // load data as there could be an update made in the Settings screen
         }
     }
@@ -142,7 +157,7 @@ class UserScreenController: UIViewController {
     func loadData() {
         
         if let userDisplay = User!.displayName { // User set up a username already
-            self.userGreet.text = "Hello, \(String(describing: userDisplay))"
+            self.userGreet.text = "\(String(describing: userDisplay))"
         }
         else { // else use their email for the user screen
             self.userGreet.text = "\(String(describing: User!.email!))"
@@ -192,7 +207,7 @@ class UserScreenController: UIViewController {
     
 }
 
-/* Holds delegate for UIImagePickerController */
+/* Holds delegate for UIImagePickerController & Circle Crop */
 extension UserScreenController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -215,13 +230,23 @@ extension UserScreenController: UINavigationControllerDelegate, UIImagePickerCon
             self.profilePictureView.image = image
             dismiss(animated: true, completion: nil)
             
+            /* Starting activity indicator animation */
+            self.uploadPicActivityIndicator.isHidden = false
+            self.uploadPicActivityIndicator.startAnimating()
+            
             self.FirebaseClient?.uploadUserPhotoToStorage(image: image) {
                 (url) in
                 if url != nil {
                     print("Image uploaded to \(String(describing: url))")
+                    
+                    self.uploadPicActivityIndicator.stopAnimating()
+                    self.uploadPicActivityIndicator.isHidden = true
                 }
                 else {
                     print("Image was not uploaded.")
+                    
+                    self.uploadPicActivityIndicator.stopAnimating()
+                    self.uploadPicActivityIndicator.isHidden = true
                 }
             }
         }

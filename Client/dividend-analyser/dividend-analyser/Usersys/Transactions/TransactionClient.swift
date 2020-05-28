@@ -68,9 +68,9 @@ public class FirebaseClient {
     /* Uploads to Firebase Storage the user's choice of profile picture */
     public func uploadUserPhotoToStorage(image: UIImage, completion: @escaping (URL?) -> (Void)) {
         
-        let userProfilePicRef = Storage.storage().reference().child("profilePics").child("\(String(describing: self.User!.uid))").child("profilePic.png")
+        let userProfilePicRef = Storage.storage().reference().child("profilePics").child("\(String(describing: self.User!.uid))").child("profilePic.jpg")
         
-        let imgData = image.pngData()
+        let imgData = image.jpegData(compressionQuality: 0.5)
         
         userProfilePicRef.putData(imgData!, metadata: nil) {
             (metadata, error) in
@@ -98,7 +98,7 @@ public class FirebaseClient {
     /* Downloads the user's profile pic from Firebase Storage */
     public func downloadUserProfilePic(completion: @escaping (UIImage?) -> (Void)) {
         
-        let userProfilePicRef = Storage.storage().reference().child("profilePics").child("\(String(describing: self.User!.uid))").child("profilePic.png")
+        let userProfilePicRef = Storage.storage().reference().child("profilePics").child("\(String(describing: self.User!.uid))").child("profilePic.jpg")
         
         userProfilePicRef.getData(maxSize: 35 * 1024 * 1024) {
             (data, error) in
