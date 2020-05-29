@@ -53,6 +53,18 @@ class UserScreenController: UIViewController {
     
     override func viewDidLoad() {
         
+        /* Drawing a Horizontal Line under modal header */
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x: 15, y: 70))
+        path.addLine(to: CGPoint(x: 360, y: 70))
+        
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.path = path.cgPath
+        shapeLayer.strokeColor = UIColor.darkGray.cgColor
+        shapeLayer.lineWidth = 1.0
+        
+        view.layer.addSublayer(shapeLayer)
+        
         /* View Inits */
         self.uploadPicActivityIndicator.isHidden = true
         
@@ -132,7 +144,7 @@ class UserScreenController: UIViewController {
     /* Segue Performing Methodology */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         /* Should add segue-specific for Portofolio transactions */
-        if(segue.identifier == "moveToUserScreen") {
+        if(segue.identifier == "moveToSettings") {
             let settingsVC = segue.destination as! SettingsScreenController
             if let currentUser = Auth.auth().currentUser { // The user is logged in on the current session
                 settingsVC.User = currentUser
