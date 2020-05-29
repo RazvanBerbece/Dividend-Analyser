@@ -23,16 +23,57 @@ public class FirebaseClient {
     public func uploadTransactionToUser(transaction: [[String]], completion: @escaping (Bool) -> (Void)) {
         
         let dbRef = Database.database().reference() // holds the reference to the Realtime Database
-        
         let usersRef = dbRef.child("users") // holds the reference to the Users container
-        
         let specificUserRef = usersRef.child("\(String(describing: self.User!.uid))") // holds the reference to the current user container
         
         specificUserRef.setValue(transaction) // setting the users portofolio to the current built one
         
         print("Set values in Database.")
-        
         completion(true)
+        
+    }
+    
+    /* This functions deletes all the data related to the user from Firebase (Auth, Database, Storage) */
+    public func deleteUserData(completion: @escaping (Bool) -> (Void)) {
+        
+        /* Deleting Auth */
+        self.User?.delete {
+            (error) in
+            if error == nil {
+                /* Deleting Database Values */
+                let dbRef = Database.database().reference() // holds the reference to the Realtime Database
+                let usersRef = dbRef.child("users") // holds the reference to the Users container
+                let specificUserRef = usersRef.child("\(String(describing: self.User!.uid))") // holds the reference to the current user container
+                
+                specificUserRef.removeValue() {
+                    (error, _) in
+                    if error == nil {
+                        print("Deleted transactions from Firebase.")
+                        /* Deleting Storage Values if transactions were successfully deleted */
+                        let userProfilePicRef = Storage.storage().reference().child("profilePics").child("\(String(describing: self.User!.uid))").child("profilePic.jpg")
+                        userProfilePicRef.delete {
+                            error in
+                            if error == nil {
+                                print("Deleted stored data from Firebase.")
+                                completion(true)
+                            }
+                            else {
+                                print("error = \(String(describing: error))")
+                                completion(false)
+                            }
+                        }
+                    }
+                    else {
+                        print("error = \(String(describing: error))")
+                        completion(false)
+                    }
+                }
+            }
+            else {
+                print("error = \(String(describing: error))")
+                completion(false)
+            }
+        }
         
     }
     
@@ -40,9 +81,7 @@ public class FirebaseClient {
     public func downloadUserTransactions(completion: @escaping ([[String]]) -> (Void)) {
         
         let dbRef = Database.database().reference()
-        
         let usersRef = dbRef.child("users")
-        
         let specificUserRef = usersRef.child("\(String(describing: self.User!.uid))")
         
         specificUserRef.observeSingleEvent(of: .value, with: { // Transactions download once when user first logins
@@ -50,18 +89,15 @@ public class FirebaseClient {
             
             if let transactions = snapshot.value as? [[String]] {
                 print("Got data from download : \(transactions)")
-                
                 completion(transactions)
             }
             else {
                 completion([[]])
             }
         }) { (error) in
-            if error == nil { // Something occured while downloading the data
-                print("error = \(error)")
-                
-                completion([[]])
-            }
+            // Something occured while downloading the data
+            print("error = \(error)")
+            completion([[]])
         }
     }
     

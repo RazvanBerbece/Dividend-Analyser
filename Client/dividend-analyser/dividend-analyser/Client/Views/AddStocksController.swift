@@ -21,9 +21,13 @@ class AddStocksController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var predictionLabel: UILabel!
     @IBOutlet weak var addStockResultLabel: UILabel!
     @IBOutlet weak var logoView: UIImageView!
+    // Activity Indicators & Labels
     @IBOutlet weak var downloadIndicator: UIActivityIndicatorView!
     @IBOutlet weak var downloadActivityLabel: UILabel!
+    @IBOutlet weak var stockNameActivityInd: UIActivityIndicatorView!
     
+    @IBOutlet weak var valueActivityInd: UIActivityIndicatorView!
+    @IBOutlet weak var freqActivityInd: UIActivityIndicatorView!
     /* User Variables */
     var portofolio : [[String]] = [] // this will be updated and sent
     var User : User?
@@ -57,9 +61,19 @@ class AddStocksController: UIViewController, UITextFieldDelegate {
         else {
             /* Displaying Activity Indicators & Starting Animation */
             DispatchQueue.main.async {
+                self.valueLabel.text = ""
+                self.methodLabel.text = ""
+                self.symbolLabel.text = symbolInput!
+                
                 self.downloadActivityLabel.isHidden = false
                 self.downloadIndicator.isHidden = false
+                self.stockNameActivityInd.isHidden = false
+                self.valueActivityInd.isHidden = false
+                self.freqActivityInd.isHidden = false
                 self.downloadIndicator.startAnimating()
+                self.stockNameActivityInd.startAnimating()
+                self.valueActivityInd.startAnimating()
+                self.freqActivityInd.startAnimating()
             }
             
             /* Client Search - Tomi call here */
@@ -75,13 +89,23 @@ class AddStocksController: UIViewController, UITextFieldDelegate {
                     self.addStockResultLabel.text = "Press the button below to add to your portofolio."
                     self.addStockResultLabel.textColor = UIColor(ciColor: .green)
                     
-                    self.logoView.layer.cornerRadius = 42
+                    /* Rounding Image */
+                    self.logoView.contentMode = .scaleAspectFill
+                    self.logoView.clipsToBounds = true
+                    self.logoView.layer.cornerRadius = self.logoView.layer.frame.width / 2
+                    
                     self.logoView.kf.setImage(with: URL(string: data[5]))
                     
                     /* Hiding Activity Indicators & Stopping Animation */
                     self.downloadActivityLabel.isHidden = true
                     self.downloadIndicator.isHidden = true
+                    self.stockNameActivityInd.isHidden = true
+                    self.valueActivityInd.isHidden = true
+                    self.freqActivityInd.isHidden = true
                     self.downloadIndicator.stopAnimating()
+                    self.stockNameActivityInd.stopAnimating()
+                    self.valueActivityInd.stopAnimating()
+                    self.freqActivityInd.stopAnimating()
                     
                     completion(true)
                 }
@@ -94,13 +118,21 @@ class AddStocksController: UIViewController, UITextFieldDelegate {
                     /* Hiding Activity Indicators & Stopping Animation */
                     self.downloadActivityLabel.isHidden = true
                     self.downloadIndicator.isHidden = true
+                    self.stockNameActivityInd.isHidden = true
+                    self.valueActivityInd.isHidden = true
+                    self.freqActivityInd.isHidden = true
                     self.downloadIndicator.stopAnimating()
+                    self.stockNameActivityInd.stopAnimating()
+                    self.valueActivityInd.stopAnimating()
+                    self.freqActivityInd.stopAnimating()
+                    
+                    self.valueLabel.text = ""
+                    self.methodLabel.text = ""
                     
                     completion(false)
                 }
             }
         }
-        
     }
     
     @IBAction func addSymbol() {
@@ -159,14 +191,29 @@ class AddStocksController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         
+        /* Drawing a Horizontal Line under modal header */
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x: 15, y: 125))
+        path.addLine(to: CGPoint(x: 360, y: 125))
+        
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.path = path.cgPath
+        shapeLayer.strokeColor = UIColor.darkGray.cgColor
+        shapeLayer.lineWidth = 1.0
+        
+        view.layer.addSublayer(shapeLayer)
+        
         /* Hiding Activity Indicators and Labels */
         self.downloadActivityLabel.isHidden = true
         self.downloadIndicator.isHidden = true
+        self.stockNameActivityInd.isHidden = true
+        self.valueActivityInd.isHidden = true
+        self.freqActivityInd.isHidden = true
         
         super.viewDidLoad()
         
         /* Looks for single or multiple taps */
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         
         view.addGestureRecognizer(tap)
         

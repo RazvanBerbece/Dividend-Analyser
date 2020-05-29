@@ -63,6 +63,18 @@ class UserPortofolioController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         
+        /* Drawing a Horizontal Line under modal header */
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x: 15, y: 125))
+        path.addLine(to: CGPoint(x: 360, y: 125))
+        
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.path = path.cgPath
+        shapeLayer.strokeColor = UIColor.darkGray.cgColor
+        shapeLayer.lineWidth = 1.0
+        
+        view.layer.addSublayer(shapeLayer)
+        
         /* Setting Delegates & Table View constants */
         self.portofolioTableView.delegate = self
         self.portofolioTableView.dataSource = self
@@ -128,15 +140,16 @@ class UserPortofolioController: UIViewController, UITableViewDelegate, UITableVi
             cell.accessoryView = button
             
             /* Making the Stock Logos rounded */
-            cell.imageView!.layer.masksToBounds = true
+            cell.imageView!.frame.size = CGSize(width: 60, height: 60)
             cell.imageView!.layer.cornerRadius = 20
+            cell.imageView!.layer.masksToBounds = true
             
             /* Stock Logo Methodology using KingFisher */
             if model[indexPath.row].getLogoURL() != "" {
                 
                 let url = URL(string: "\(model[indexPath.row].getLogoURL())")
                 // Downsampling
-                let processor = DownsamplingImageProcessor(size: CGSize(width: 45, height: 45))
+                let processor = DownsamplingImageProcessor(size: CGSize(width: 60, height: 60))
                 cell.imageView!.kf.indicatorType = .activity
                 cell.imageView!.kf.setImage(
                     with: url,
@@ -151,7 +164,7 @@ class UserPortofolioController: UIViewController, UITableViewDelegate, UITableVi
                     result in
                     switch result {
                     case .success(let value):
-                        print("value = \(value)")
+                        print(value)
                     case .failure(let error):
                         print("error = \(error)")
                     }
