@@ -21,6 +21,9 @@ class SettingsScreenController: UIViewController {
     /* View Side Variables */
     var User : User?
     
+    /* Managers */
+    var firebaseClient : FirebaseClient?
+    
     /* IBActions and buttons events */
     @IBAction func submitChanges() {
         
@@ -111,11 +114,52 @@ class SettingsScreenController: UIViewController {
         }
     }
     
+    /* Deletes current user from Firebase and signs out */
+    @IBAction func deleteCurrentUser() {
+        
+        /* Displays an alert to make sure that the user wants to delete their account */
+        let alert = UIAlertController(title: "Are you sure you want to delete your account ?", message: "By deleting your account, all your data will be erased from the system.", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { // if the user chooses Yes, process the deletion
+            _ in
+            self.firebaseClient?.deleteUserData {
+                (result) in
+                if result {
+                    // Signing out and moving to Root
+                    self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
+                }
+                else {
+                    self.changesResultLabel.text = "An error occured while deleting your account data."
+                    self.changesResultLabel.textColor = UIColor(ciColor: .red)
+                }
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { // else close
+            _ in
+            print("Account deletion interrupted.")
+        }))
+        
+        self.present(alert, animated: true)
+        
+    }
+    
     override func viewDidLoad() {
+        
+        /* Drawing a Horizontal Line under modal header */
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x: 15, y: 125))
+        path.addLine(to: CGPoint(x: 360, y: 125))
+        
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.path = path.cgPath
+        shapeLayer.strokeColor = UIColor.darkGray.cgColor
+        shapeLayer.lineWidth = 1.0
+        
+        view.layer.addSublayer(shapeLayer)
         
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        self.firebaseClient = FirebaseClient(user: self.User!)
         
         //Looks for single or multiple taps.
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
@@ -128,7 +172,6 @@ class SettingsScreenController: UIViewController {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
-    
     
     @IBAction func unwind(unwindSegue: UIStoryboardSegue) {
         /* This can be empty, presence required */

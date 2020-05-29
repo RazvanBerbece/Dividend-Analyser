@@ -14,6 +14,9 @@ import UIKit
  */
 class RootInfoController: UIViewController {
     
+    /* IBOutlets */
+    @IBOutlet weak var deletedAccountLabel: UILabel!
+    
     /* View Variables */
     var userNeedsToSignUp : Bool?
     
@@ -35,7 +38,9 @@ class RootInfoController: UIViewController {
     }
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -44,6 +49,5 @@ class RootInfoController: UIViewController {
             credentialScreen.needsToSignUp = self.userNeedsToSignUp
         }
     }
-    
     
 }
